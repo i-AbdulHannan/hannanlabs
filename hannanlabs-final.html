@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0a0a0a" />
+<meta name="color-scheme" content="dark" />
+<meta name="description" content="HannanLabs, an independent product studio by hannanbuilds. Building focused software that solves real problems." />
+<title>HannanLabs | Product Studio by hannanbuilds</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 48 48%27%3E%3Crect x=%271%27 y=%271%27 width=%2746%27 height=%2746%27 rx=%2713%27 fill=%27%23d9ff3a%27/%3E%3Cpath d=%27M13 12v24M35 12v24M13 24h22%27 stroke=%27%230a0a0a%27 stroke-width=%275%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2735%27 cy=%2712%27 r=%272.5%27 fill=%27%230a0a0a%27/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#090a09;
+  --bg-2:#0f100f;
+  --panel:#121412;
+  --panel-2:#171917;
+  --ink:#f6f7f4;
+  --muted:#a4aaa1;
+  --muted-2:#6d726c;
+  --acid:#d9ff3a;
+  --acid-2:#b9df19;
+  --line:rgba(255,255,255,.10);
+  --line-2:rgba(255,255,255,.16);
+  --white:#fff;
+  --max:1480px;
+  --radius:26px;
+  --radius-sm:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font-family:Manrope,Arial,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,a{font:inherit}
+button{border:0;background:none;color:inherit;cursor:pointer}
+::selection{background:var(--acid);color:#0a0a0a}
+body:before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");mix-blend-mode:screen}
+
+.logo{display:inline-flex;align-items:center;gap:11px;white-space:nowrap}
+.logo-mark{width:38px;height:38px;flex:0 0 38px;object-fit:contain;border-radius:8px}
+.logo-word{font-family:Space Grotesk,sans-serif;font-weight:700;letter-spacing:-.055em;font-size:18px}
+.logo-word span{color:var(--acid)}
+
+.wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.section{position:relative;padding:130px 0}
+.eyebrow{font:500 11px/1 DM Mono,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+.eyebrow:before{content:"";width:8px;height:8px;background:var(--acid);display:block}
+.display{font-family:Space Grotesk,sans-serif;letter-spacing:-.075em;font-weight:600;line-height:.92}
+.mono{font-family:DM Mono,monospace}
+.muted{color:var(--muted)}
+
+/* Cursor */
+#cursor{position:fixed;left:0;top:0;width:20px;height:20px;border:1px solid var(--acid);border-radius:50%;pointer-events:none;z-index:10001;transform:translate(-50%,-50%);mix-blend-mode:difference;opacity:0;transition:opacity .2s ease,width .2s ease,height .2s ease,background .2s ease}
+#cursor-dot{position:fixed;left:0;top:0;width:4px;height:4px;border-radius:50%;background:var(--acid);pointer-events:none;z-index:10002;transform:translate(-50%,-50%);mix-blend-mode:difference;opacity:0}
+body.cursor-ready #cursor,body.cursor-ready #cursor-dot{opacity:1}
+body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12);}
+@media (pointer:coarse){#cursor,#cursor-dot{display:none}}
+
+/* Nav */
+.nav-shell{position:fixed;inset:0 0 auto;z-index:1000;padding:18px 0;mix-blend-mode:normal}
+.nav{width:min(var(--max),calc(100% - 40px));margin:auto;height:66px;padding:0 16px;border:1px solid rgba(255,255,255,.08);background:rgba(10,10,10,.64);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:space-between;border-radius:18px;transition:background .25s ease,transform .25s ease,border-color .25s ease}
+.nav.scrolled{background:rgba(10,10,10,.88);border-color:rgba(255,255,255,.12)}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links a{padding:11px 13px;border-radius:12px;color:#bfc4bc;font-size:13px;transition:color .2s ease,background .2s ease}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.05)}
+.nav-cta{padding:11px 15px;background:var(--acid);color:#0b0c0b;border-radius:12px;font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:8px}
+.menu-toggle{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:12px}
+
+/* Hero */
+.hero{min-height:100svh;position:relative;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero.webgl-fallback{background:radial-gradient(circle at 68% 38%,rgba(217,255,58,.10),transparent 25%),radial-gradient(circle at 25% 70%,rgba(255,255,255,.055),transparent 28%),#090a09}
+#webgl{position:absolute;inset:0;z-index:0;width:100%;height:100%;display:block}
+.hero:after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 58% 45%,transparent 0 26%,rgba(9,10,9,.30) 55%,rgba(9,10,9,.86) 100%),linear-gradient(180deg,rgba(9,10,9,.30) 0%,rgba(9,10,9,.05) 32%,rgba(9,10,9,.35) 100%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;z-index:2;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.75),transparent 82%);mask-image:linear-gradient(to bottom,rgba(0,0,0,.75),transparent 82%)}
+.hero-content{position:relative;z-index:3;padding:165px 0 115px;width:min(var(--max),calc(100% - 40px));margin:auto}
+.hero-kicker{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:980px;margin-bottom:30px}
+.live-dot{display:inline-flex;align-items:center;gap:8px;font:500 11px DM Mono,monospace;letter-spacing:.15em;text-transform:uppercase;color:#d4d8d1}
+.live-dot i{width:8px;height:8px;background:var(--acid);border-radius:50%;box-shadow:0 0 18px rgba(217,255,58,.75)}
+.hero h1{font-size:clamp(72px,11.5vw,184px);max-width:1180px}
+.hero h1 .acid{color:var(--acid)}
+.hero-sub{margin-top:34px;max-width:650px;color:#b7bcb4;font-size:clamp(16px,1.55vw,22px);line-height:1.55}
+.hero-bottom{margin-top:80px;display:flex;justify-content:space-between;align-items:end;gap:30px}
+.hero-note{max-width:360px;font-size:12px;line-height:1.7;color:#8b9089}
+.scroll-prompt{display:inline-flex;align-items:center;gap:10px;font:500 11px DM Mono,monospace;letter-spacing:.16em;text-transform:uppercase;color:#c8ccc4}
+.scroll-line{width:90px;height:1px;background:linear-gradient(90deg,var(--acid),transparent)}
+
+/* Marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:#0c0d0c}
+.marquee-track{display:flex;width:max-content;align-items:center;white-space:nowrap;will-change:transform}
+.marquee-item{display:flex;align-items:center;gap:20px;padding:22px 38px;font-family:Space Grotesk,sans-serif;font-size:30px;letter-spacing:-.03em}
+.marquee-item b{color:var(--acid)}
+.marquee-item .dot{width:7px;height:7px;background:var(--acid);border-radius:50%}
+
+/* Intro */
+.intro{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
+.intro .big-copy{font-family:Space Grotesk,sans-serif;font-size:clamp(42px,5.3vw,84px);line-height:.98;letter-spacing:-.065em;max-width:900px}
+.big-copy em{font-style:normal;color:var(--acid)}
+.intro-copy{font-size:16px;color:#a9afa7;line-height:1.8;max-width:590px}
+.intro-copy + .intro-copy{margin-top:22px}
+
+/* Product index */
+.products-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:58px}
+.products-head h2{font-size:clamp(52px,8vw,118px);max-width:870px}
+.product-index{border-top:1px solid var(--line)}
+.product-row{position:relative;display:grid;grid-template-columns:90px 1fr 120px 180px 34px;gap:24px;align-items:center;padding:28px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:all .4s cubic-bezier(.23,1,.32,1)}
+.product-row:before{content:"";position:absolute;inset:0 -18px;background:rgba(255,255,255,.025);transform:scaleY(0);transform-origin:center;transition:transform .4s ease}
+.product-row:hover:before{transform:scaleY(1)}
+.product-row > *{position:relative;z-index:1}
+.product-no{font:500 12px DM Mono,monospace;color:#6c726c;transition:color .3s ease}
+.product-row:hover .product-no{color:var(--acid)}
+.product-main{display:flex;align-items:center;gap:18px}
+.product-orb{width:11px;height:11px;border-radius:50%;background:var(--acid);box-shadow:0 0 20px rgba(217,255,58,.22);flex:0 0 11px;transition:box-shadow .3s ease}
+.product-row:hover .product-orb{box-shadow:0 0 28px rgba(217,255,58,.4)}
+.product-name{font-family:Space Grotesk,sans-serif;font-size:clamp(26px,3vw,46px);letter-spacing:-.055em}
+.product-kind{font:500 11px DM Mono,monospace;text-transform:uppercase;letter-spacing:.12em;color:#8e948b;transition:color .3s ease}
+.product-row:hover .product-kind{color:#c0c5bc}
+.product-status{font:500 10px DM Mono,monospace;text-transform:uppercase;letter-spacing:.14em;color:var(--acid);justify-self:start}
+.product-status.coming{color:#a5aaa2}
+.product-arrow{font-size:20px;color:#969c94;transition:color .3s ease}
+.product-row:hover .product-arrow{color:var(--acid)}
+
+/* Product stages */
+.product-stage{min-height:80vh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:stretch;margin-top:110px}
+.product-visual{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(150deg,#141614,#090a09);min-height:580px}
+.product-visual .grain{position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 72% 24%,rgba(217,255,58,.14),transparent 26%),radial-gradient(circle at 24% 80%,rgba(255,255,255,.06),transparent 28%);pointer-events:none}
+.product-visual .ring{position:absolute;border:1px solid rgba(217,255,58,.25);border-radius:50%;width:520px;height:520px;right:-100px;top:-100px;z-index:2;pointer-events:none}
+.product-visual .ring.r2{width:320px;height:320px;right:5%;top:12%;border-color:rgba(255,255,255,.08)}
+.product-visual .grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:50px 50px;opacity:.22;pointer-events:none}
+.product-visual .label{position:absolute;left:34px;top:32px;font:500 10px DM Mono,monospace;letter-spacing:.16em;color:#c9cdc6;text-transform:uppercase;z-index:5;pointer-events:none}
+.product-visual .massive{position:absolute;left:34px;bottom:28px;font-family:Space Grotesk,sans-serif;font-size:clamp(60px,8vw,126px);letter-spacing:-.08em;line-height:.84;max-width:80%;font-weight:600;z-index:5;pointer-events:none}
+.product-visual .massive span{color:var(--acid)}
+.product-info{display:flex;flex-direction:column;justify-content:space-between;border-top:1px solid var(--line);padding-top:20px}
+.product-info-top .tag{font:500 11px DM Mono,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--acid)}
+.product-info h3{font-size:clamp(42px,6vw,88px);margin-top:18px}
+.product-info p{margin-top:24px;color:#a8aea6;line-height:1.75;font-size:16px;max-width:560px}
+.feature-list{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+.feature{padding:16px 0;border-bottom:1px solid var(--line);font:500 12px DM Mono,monospace;color:#b4b9b1;display:flex;justify-content:space-between;gap:12px;transition:color .3s ease}
+.feature:hover{color:var(--acid)}
+.feature strong{font-family:Manrope,sans-serif;font-size:12px;color:#ecefe9;font-weight:600}
+.product-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:0 18px;border:1px solid var(--line-2);border-radius:13px;font-size:13px;font-weight:700;transition:transform .2s ease,border-color .2s ease,background .2s ease,color .2s ease}
+.btn.primary{background:var(--acid);color:#0a0b0a;border-color:var(--acid)}
+.btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.32)}
+.btn.primary:hover{background:#e4ff6b}
+
+/* Studio DNA */
+.dna{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.dna-card{border:1px solid var(--line);background:linear-gradient(145deg,#111310,#0c0d0c);border-radius:var(--radius-sm);padding:34px;min-height:280px;position:relative;overflow:hidden}
+.dna-card .num{position:absolute;right:24px;top:20px;font:500 10px DM Mono,monospace;color:#62685f}
+.dna-card h3{font-family:Space Grotesk,sans-serif;font-size:38px;letter-spacing:-.055em;margin-top:60px}
+.dna-card p{margin-top:18px;color:#969c94;line-height:1.75;max-width:520px;font-size:14px}
+.dna-card .signal{position:absolute;bottom:0;left:0;height:4px;width:100%;background:linear-gradient(90deg,var(--acid),transparent)}
+
+/* Founder */
+.founder{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:end}
+.founder-portrait{min-height:560px;border:1px solid var(--line);border-radius:var(--radius);position:relative;overflow:hidden;background:#0a0b0a}
+.founder-portrait img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.founder-portrait:before{content:"";position:absolute;inset:0;border:1px dashed rgba(217,255,58,.24);border-radius:18px;z-index:2;pointer-events:none}
+.founder-caption{position:absolute;left:28px;right:28px;bottom:24px;display:flex;justify-content:space-between;gap:20px;font:500 10px DM Mono,monospace;letter-spacing:.12em;text-transform:uppercase;color:#989f96;z-index:3}
+.founder-copy .eyebrow{margin-bottom:20px}
+.founder-copy h2{font-size:clamp(52px,7vw,108px)}
+.founder-copy .lead{margin-top:28px;font-size:20px;line-height:1.65;color:#d0d4cc;max-width:720px}
+.founder-copy .body{margin-top:22px;line-height:1.8;color:#959b93;max-width:670px;font-size:15px}
+.socials{margin-top:36px;display:flex;flex-wrap:wrap;gap:10px}
+.social-link{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);padding:12px 14px;border-radius:12px;font-size:12px;color:#bec3bb;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.social-link:hover{border-color:rgba(217,255,58,.38);color:var(--acid);background:rgba(217,255,58,.05)}
+
+/* Future */
+.future{padding-bottom:160px}
+.future-wrap{border:1px solid var(--line);border-radius:var(--radius);padding:44px;position:relative;overflow:hidden;background:linear-gradient(140deg,#10120f,#0b0c0b)}
+.future-wrap:before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-180px;top:-200px;border:1px solid rgba(217,255,58,.15);box-shadow:0 0 100px rgba(217,255,58,.06)}
+.future-content{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:end;gap:30px}
+.future h2{font-size:clamp(54px,8vw,120px);max-width:860px}
+.future p{max-width:440px;color:#929890;line-height:1.75;margin-top:20px}
+.future-btn{margin-top:28px;display:inline-flex;gap:10px;align-items:center;padding:14px 16px;background:var(--acid);color:#090a09;border-radius:12px;font-weight:800;font-size:12px}
+
+/* Footer */
+.footer{border-top:1px solid var(--line);padding:26px 0 42px}
+.footer-grid{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
+.footer-meta{color:#737970;font:500 10px DM Mono,monospace;line-height:1.7;letter-spacing:.08em;text-transform:uppercase}
+.footer-nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.footer-nav a{font-size:12px;color:#979c95}
+.footer-nav a:hover{color:var(--acid)}
+
+/* Reveal states */
+.reveal{opacity:1;transform:none}
+.skip-link{position:fixed;left:16px;top:16px;z-index:10005;transform:translateY(-150%);padding:10px 14px;border-radius:10px;background:var(--acid);color:#0a0a0a;font-size:12px;font-weight:800;transition:transform .2s ease}.skip-link:focus{transform:translateY(0)}
+:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+
+/* Modal */
+.modal{position:fixed;inset:0;z-index:2000;display:none}
+.modal.open{display:block}
+.modal-backdrop{position:absolute;inset:0;background:rgba(4,5,4,.74);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0}
+.modal-panel{position:absolute;inset:26px;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;border:1px solid rgba(255,255,255,.12);background:#0b0c0b;border-radius:26px;transform:translateY(30px) scale(.98);opacity:0}
+.modal-inner{width:min(1180px,calc(100% - 48px));margin:auto;padding:28px 0 70px}
+.modal-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:linear-gradient(#0b0c0b 70%,transparent);z-index:5}
+.close{width:44px;height:44px;border:1px solid var(--line-2);border-radius:12px;display:grid;place-items:center;font-size:20px;transition:background .2s ease,border-color .2s ease}
+.close:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.24)}
+.modal-hero{padding:80px 0 60px;display:grid;grid-template-columns:1.25fr .75fr;gap:60px;align-items:end}
+.modal-kicker{color:var(--acid);font:500 11px DM Mono,monospace;letter-spacing:.14em;text-transform:uppercase}
+.modal-hero h2{font-size:clamp(64px,10vw,145px);margin-top:16px}
+.modal-summary{color:#a4aaa1;line-height:1.8;max-width:420px}
+.modal-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.modal-card{border:1px solid var(--line);border-radius:18px;padding:24px;background:#101210}
+.modal-card h4{font:500 11px DM Mono,monospace;letter-spacing:.14em;text-transform:uppercase;color:#7d837b}
+.modal-card p,.modal-card li{font-size:14px;line-height:1.75;color:#b6bbb3}
+.modal-card p{margin-top:12px}
+.modal-card ul{margin:12px 0 0 18px}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+
+/* Responsive - full coverage */
+@media (max-width:1400px){
+  .wrap{width:min(1340px,calc(100% - 40px))}
+  .hero-content{width:min(1340px,calc(100% - 40px))}
+}
+@media (max-width:1100px){
+  .nav-links{display:none;position:fixed;left:13px;right:13px;top:78px;padding:10px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(10,10,10,.95);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);flex-direction:column;align-items:stretch;z-index:1001}
+  .nav-links.is-open{display:flex}
+  .menu-toggle{display:grid;place-items:center}.nav-cta{margin-left:auto;margin-right:8px}
+  .intro,.founder{grid-template-columns:1fr;gap:40px}
+  .product-stage{grid-template-columns:1fr}
+  .product-visual{min-height:490px}
+  .future-content{flex-direction:column;align-items:flex-start}
+  .modal-hero{grid-template-columns:1fr;gap:30px}
+}
+@media (max-width:900px){
+  .product-row{grid-template-columns:60px 1fr 150px 25px;gap:16px;padding:24px 0}
+  .product-name{font-size:clamp(22px,4vw,36px)}
+  .products-head{flex-direction:column;align-items:flex-start;gap:16px}
+  .products-head h2{font-size:clamp(42px,10vw,80px)}
+  .hero h1{font-size:clamp(56px,10vw,110px)}
+  .dna{gap:16px}
+  .dna-card{min-height:260px;padding:28px}
+  .founder-copy h2{font-size:clamp(46px,8vw,90px)}
+  .modal-card{padding:20px}
+}
+@media (max-width:760px){
+  .wrap,.hero-content{width:min(100% - 26px,var(--max))}
+  .nav{width:min(100% - 26px,var(--max));height:58px;padding:0 10px 0 12px}
+  .logo-mark{width:32px;height:32px;flex-basis:32px}.logo-word{font-size:16px}
+  .nav-cta{padding:10px 11px;font-size:11px}
+  .section{padding:90px 0}
+  .hero-content{padding:145px 0 90px}
+  .hero h1{font-size:clamp(50px,14vw,90px)}
+  .hero-kicker{align-items:flex-start;flex-direction:column}
+  .hero-bottom{margin-top:55px;flex-direction:column;align-items:flex-start;gap:20px}
+  .hero-sub{font-size:15px;margin-top:24px}
+  .hero-note{font-size:11px;max-width:280px}
+  .marquee-item{font-size:22px;padding:18px 24px}
+  .products-head{margin-bottom:30px}
+  .products-head h2{font-size:clamp(38px,12vw,72px)}
+  .product-row{grid-template-columns:36px 1fr 20px;gap:10px;padding:20px 0}
+  .product-kind,.product-status{display:none}
+  .product-name{font-size:22px}
+  .product-no{font-size:9px}
+  .product-stage{margin-top:60px}
+  .product-visual{min-height:320px;border-radius:20px}
+  .product-visual .ring{width:260px;height:260px;right:-80px;top:-80px}
+  .product-visual .ring.r2{width:170px;height:170px;right:8%;top:15%}
+  .product-visual .massive{left:20px;bottom:20px;font-size:clamp(48px,12vw,68px)}
+  .product-visual .label{left:20px;top:18px;font-size:9px}
+  .product-info{padding-top:16px}
+  .product-info h3{font-size:clamp(34px,8vw,56px);margin-top:14px}
+  .product-info p{font-size:14px;margin-top:18px;line-height:1.7}
+  .feature-list{grid-template-columns:1fr;margin-top:24px}
+  .feature{padding:12px 0;font-size:11px}
+  .feature strong{font-size:11px}
+  .product-actions{margin-top:28px;gap:8px}
+  .btn{min-height:42px;padding:0 14px;font-size:12px;border-radius:11px}
+  .dna{grid-template-columns:1fr}
+  .dna-card{min-height:220px;padding:22px}
+  .dna-card h3{font-size:28px;margin-top:50px}
+  .dna-card p{font-size:13px}
+  .founder{gap:30px}
+  .founder-portrait{min-height:320px}
+  .founder-copy h2{font-size:clamp(42px,12vw,68px)}
+  .founder-copy .lead{font-size:16px}
+  .founder-copy .body{font-size:14px}
+  .socials{gap:8px}
+  .social-link{padding:10px 12px;font-size:11px}
+  .future-wrap{padding:24px;border-radius:20px}
+  .future h2{font-size:clamp(42px,12vw,72px)}
+  .future p{font-size:14px}
+  .future-btn{padding:12px 14px;font-size:11px}
+  .footer-meta{font-size:9px}
+  .footer-nav{gap:14px}
+  .footer-nav a{font-size:11px}
+  .modal-panel{inset:8px;border-radius:18px}
+  .modal-inner{width:min(100% - 24px,1180px);padding:20px 0 50px}
+  .modal-hero{padding:50px 0 30px}
+  .modal-hero h2{font-size:clamp(46px,12vw,80px)}
+  .modal-kicker{font-size:10px}
+  .modal-summary{font-size:14px}
+  .modal-cols{grid-template-columns:1fr;gap:16px}
+  .modal-card{border-radius:14px;padding:18px}
+  .modal-card h4{font-size:10px}
+  .modal-card p,.modal-card li{font-size:13px;line-height:1.7}
+  .close{width:38px;height:38px;border-radius:10px;font-size:18px}
+}
+@media (max-width:480px){
+  .wrap,.hero-content{width:min(100% - 20px,var(--max))}
+  .nav{width:min(100% - 20px,var(--max));height:52px;padding:0 8px 0 10px;border-radius:14px}
+  .logo-mark{width:28px;height:28px;flex-basis:28px;border-radius:6px}
+  .logo-word{font-size:14px}
+  .nav-cta{padding:8px 10px;font-size:10px;border-radius:10px}
+  .menu-toggle{width:36px;height:36px;border-radius:10px;font-size:16px}
+  .section{padding:70px 0}
+  .hero-content{padding:130px 0 70px}
+  .hero h1{font-size:clamp(42px,14vw,72px)}
+  .hero-sub{font-size:14px}
+  .hero-bottom{margin-top:40px}
+  .hero-note{font-size:10px;max-width:240px}
+  .scroll-prompt{font-size:10px}
+  .scroll-line{width:60px}
+  .marquee-item{font-size:18px;padding:14px 18px;gap:14px}
+  .marquee-item .dot{width:5px;height:5px}
+  .eyebrow{font-size:10px}
+  .big-copy{font-size:clamp(30px,8vw,48px)}
+  .intro-copy{font-size:14px}
+  .products-head h2{font-size:clamp(32px,12vw,56px)}
+  .product-row{grid-template-columns:30px 1fr 16px;gap:8px;padding:16px 0}
+  .product-name{font-size:18px}
+  .product-orb{width:8px;height:8px;flex:0 0 8px}
+  .product-stage{margin-top:48px}
+  .product-visual{min-height:260px;border-radius:16px}
+  .product-visual .massive{font-size:clamp(40px,14vw,56px);left:16px;bottom:16px}
+  .product-visual .label{left:16px;top:14px;font-size:8px;letter-spacing:.1em}
+  .product-info h3{font-size:clamp(30px,10vw,48px)}
+  .product-info p{font-size:13px}
+  .feature{padding:10px 0;font-size:10px}
+  .feature strong{font-size:10px}
+  .btn{min-height:38px;padding:0 12px;font-size:11px;border-radius:10px}
+  .dna-card{min-height:200px;padding:18px;border-radius:14px}
+  .dna-card .num{font-size:9px}
+  .dna-card h3{font-size:24px;margin-top:44px}
+  .dna-card p{font-size:12px;line-height:1.65}
+  .founder-portrait{min-height:260px}
+  .founder-copy h2{font-size:clamp(36px,12vw,56px)}
+  .founder-copy .lead{font-size:15px}
+  .founder-copy .body{font-size:13px}
+  .founder-caption{font-size:8px;left:16px;right:16px;bottom:16px}
+  .social-link{padding:8px 10px;font-size:10px;border-radius:10px}
+  .future-wrap{padding:20px;border-radius:16px}
+  .future h2{font-size:clamp(36px,12vw,58px)}
+  .future p{font-size:13px}
+  .footer{padding:20px 0 30px}
+  .footer-meta{font-size:8px;line-height:1.6}
+  .footer-nav{gap:10px}
+  .footer-nav a{font-size:10px}
+  .modal-panel{inset:5px;border-radius:14px}
+  .modal-inner{width:min(100% - 16px,1180px);padding:14px 0 40px}
+  .modal-hero{padding:40px 0 24px;gap:20px}
+  .modal-hero h2{font-size:clamp(38px,12vw,64px)}
+  .modal-card{padding:14px;border-radius:12px}
+  .modal-actions{flex-direction:column}
+  .modal-actions .btn{width:100%}
+}
+@media (max-width:360px){
+  .hero h1{font-size:clamp(36px,14vw,56px)}
+  .products-head h2{font-size:clamp(28px,12vw,44px)}
+  .product-name{font-size:16px}
+  .product-visual .massive{font-size:clamp(34px,14vw,48px)}
+  .product-info h3{font-size:clamp(26px,10vw,40px)}
+  .dna-card h3{font-size:22px}
+  .founder-copy h2{font-size:clamp(30px,12vw,46px)}
+  .future h2{font-size:clamp(30px,12vw,48px)}
+  .modal-hero h2{font-size:clamp(32px,12vw,52px)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1!important;transform:none!important}.hero *{transition:none!important}.marquee-track{transform:none!important}.product-row:before{transition:none}.modal-backdrop,.modal-panel{transition:none!important}}
+@media print{.nav-shell,#cursor,#cursor-dot,.scroll-prompt,.marquee,.menu-toggle,.nav-cta{display:none!important}.hero{min-height:auto;padding:40px 0}.hero-content{padding:0}.product-stage{break-inside:avoid}body{background:#fff;color:#000}body:before{display:none}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<!-- HANNANLABS INLINE LOGO SPRITE -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="hannanlabs-mark" viewBox="0 0 48 48">
+      <rect x="1" y="1" width="46" height="46" rx="13" fill="#d9ff3a"/>
+      <path d="M13 12v24M35 12v24M13 24h22" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="35" cy="12" r="2.5" fill="#0a0a0a"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="cursor"></div><div id="cursor-dot"></div>
+
+<header class="nav-shell">
+  <nav class="nav" id="nav">
+    <a href="#top" class="logo" aria-label="HannanLabs home">
+      <img class="logo-mark" src="logo.png" alt="HannanLabs">
+    </a>
+    <div class="nav-links" id="primary-nav">
+      <a href="#products">Products</a><a href="#dna">Studio</a><a href="#founder">Founder</a>
+    </div>
+    <a class="nav-cta magnetic" href="https://www.instagram.com/hannanlabs_/" target="_blank" rel="noopener noreferrer">@hannanlabs_</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-controls="primary-nav" aria-expanded="false">☰</button>
+  </nav>
+</header>
+
+<main id="top" tabindex="-1" style="scroll-margin-top:120px">
+  <section class="hero">
+    <canvas id="webgl"></canvas><div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-kicker reveal">
+        <span class="eyebrow">Independent product studio · Pakistan / Worldwide</span>
+        <span class="live-dot"><i></i> Building in public</span>
+      </div>
+      <h1 class="display reveal"><span>Ideas in.</span><br><span class="acid">Systems out.</span></h1>
+      <p class="hero-sub reveal">HannanLabs is the product side of hannanbuilds. A small studio focused on building software that solves real problems, no fluff, no unnecessary complexity.</p>
+      <div class="hero-bottom reveal">
+        <p class="hero-note">One studio. Multiple products. The goal is simple: build fewer things, but build them well.</p>
+        <a href="#products" class="scroll-prompt"><span class="scroll-line"></span>Scroll to products</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="marquee" aria-label="HannanLabs principles">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="marquee-item">BUILD <b>USEFUL</b><span class="dot"></span></div>
+      <div class="marquee-item">SHIP <b>RELENTLESSLY</b><span class="dot"></span></div>
+      <div class="marquee-item">REMOVE <b>FRICTION</b><span class="dot"></span></div>
+      <div class="marquee-item">MAKE <b>LEVERAGE</b><span class="dot"></span></div>
+      <div class="marquee-item">BUILD <b>USEFUL</b><span class="dot"></span></div>
+      <div class="marquee-item">SHIP <b>RELENTLESSLY</b><span class="dot"></span></div>
+      <div class="marquee-item">REMOVE <b>FRICTION</b><span class="dot"></span></div>
+      <div class="marquee-item">MAKE <b>LEVERAGE</b><span class="dot"></span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap intro">
+      <div class="eyebrow reveal">01 / The thesis</div>
+      <div>
+        <div class="big-copy reveal">HannanLabs turns <em>real problems</em> into products people actually want to use.</div>
+        <p class="intro-copy reveal">Instead of launching a new brand for every app, everything stays under one roof. hannanbuilds is where the journey happens. HannanLabs is where the products ship.</p>
+        <p class="intro-copy reveal">The studio can grow without the brand getting diluted, one system, clear products, each with its own purpose.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="products">
+    <div class="wrap">
+      <div class="products-head">
+        <div><div class="eyebrow reveal">02 / Product index</div><h2 class="display reveal" style="margin-top:24px">What we build.</h2></div>
+        <p class="muted reveal" style="max-width:330px;font-size:13px;line-height:1.7">Each product starts with a real problem. These are the ones that made it out of the lab.</p>
+      </div>
+
+      <div class="product-index reveal" id="productIndex">
+        <button class="product-row" data-product="workroom">
+          <span class="product-no">01</span><span class="product-main"><span class="product-orb"></span><span class="product-name">workroomWR</span></span><span class="product-kind">Workflow OS</span><span class="product-status">Public product</span><span class="product-arrow"></span>
+        </button>
+        <button class="product-row" data-product="clinicflow">
+          <span class="product-no">02</span><span class="product-main"><span class="product-orb"></span><span class="product-name">ClinicFlow Pro</span></span><span class="product-kind">Clinic operating system</span><span class="product-status">Public product</span><span class="product-arrow"></span>
+        </button>
+        <button class="product-row" data-product="future">
+          <span class="product-no">03</span><span class="product-main"><span class="product-orb" style="background:#71766e;box-shadow:none"></span><span class="product-name">Next AI Product</span></span><span class="product-kind">In the lab</span><span class="product-status coming">Coming soon</span><span class="product-arrow"></span>
+        </button>
+      </div>
+
+      <article class="product-stage reveal" id="workroom-stage">
+        <div class="product-visual" data-parallax="1">
+          <div class="grain"></div><div class="grid"></div><div class="ring"></div><div class="ring r2"></div>
+          <span class="label">PRODUCT / 001 / WORKROOMWR</span><div class="massive">ONE<br><span>ROOM.</span></div>
+        </div>
+        <div class="product-info">
+          <div class="product-info-top">
+            <div class="tag">Live · Workflow tool for delivery teams</div>
+            <h3 class="display">workroomWR</h3>
+            <p>One room for every client project. Files, milestones, approvals, payments, and conversation, all in the same place, none of it buried in scattered tabs.</p>
+            <div class="feature-list">
+              <div class="feature"><span>Spaces</span><strong>Project rooms</strong></div>
+              <div class="feature"><span>Tracking</span><strong>Milestones</strong></div>
+              <div class="feature"><span>Feedback</span><strong>Approvals</strong></div>
+              <div class="feature"><span>Billing</span><strong>Payments</strong></div>
+              <div class="feature"><span>Files</span><strong>Docs + chat</strong></div>
+              <div class="feature"><span>Team</span><strong>Shared access</strong></div>
+            </div>
+            <div class="product-actions"><a class="btn primary magnetic" href="https://workroom-by-hb.vercel.app/" target="_blank" rel="noopener noreferrer">View product</a><button class="btn" data-product="workroom">Full details</button></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-stage reveal" id="clinic-stage">
+        <div class="product-info">
+          <div class="product-info-top">
+            <div class="tag">Live · Healthcare operations tool</div>
+            <h3 class="display">ClinicFlow Pro</h3>
+            <p>Appointments, patient records, prescriptions, billing, and analytics, connected into one workflow. Built for the way clinics actually run, not how software thinks they should.</p>
+            <div class="feature-list">
+              <div class="feature"><span>Care</span><strong>Patient records</strong></div>
+              <div class="feature"><span>Scheduling</span><strong>Appointments</strong></div>
+              <div class="feature"><span>Clinical</span><strong>Prescriptions</strong></div>
+              <div class="feature"><span>Business</span><strong>Billing + reports</strong></div>
+              <div class="feature"><span>Comms</span><strong>Patient messaging</strong></div>
+              <div class="feature"><span>Tools</span><strong>Smart workflows</strong></div>
+            </div>
+            <div class="product-actions"><a class="btn primary magnetic" href="https://clinic-flow-landingpage.vercel.app/" target="_blank" rel="noopener noreferrer">View product</a><button class="btn" data-product="clinicflow">Full details</button></div>
+          </div>
+        </div>
+        <div class="product-visual" data-parallax="-.7">
+          <div class="grain"></div><div class="grid"></div><div class="ring" style="right:-120px;top:-100px"></div><div class="ring r2" style="right:12%;top:22%"></div>
+          <span class="label">PRODUCT / 002 / CLINICFLOW PRO</span><div class="massive">FLOW<br><span>STATE.</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="dna">
+    <div class="wrap">
+      <div class="eyebrow reveal">03 / Studio DNA</div>
+      <div class="dna" style="margin-top:34px">
+        <article class="dna-card reveal"><span class="num">A / 01</span><h3>One brand, many products.</h3><p>Each product gets its own identity without needing a whole new brand. The studio holds it all together.</p><div class="signal"></div></article>
+        <article class="dna-card reveal"><span class="num">A / 02</span><h3>Substance over polish.</h3><p>The focus is on what the product actually does: the workflow, the mechanics, the things that save people time.</p><div class="signal"></div></article>
+        <article class="dna-card reveal"><span class="num">A / 03</span><h3>AI only where it helps.</h3><p>AI is a feature, not a selling point. It goes in when it makes the product better, not to fill a landing page.</p><div class="signal"></div></article>
+        <article class="dna-card reveal"><span class="num">A / 04</span><h3>Fast enough to adjust.</h3><p>Ship, watch, improve. Short cycles so ideas get tested before they get expensive.</p><div class="signal"></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="founder">
+    <div class="wrap founder">
+      <div class="founder-portrait reveal">
+        <img src="pic.jpg" alt="hannanbuilds - Founder">
+        <div class="founder-caption"><span>Founder / hannanbuilds</span><span>HannanLabs / 2026</span></div>
+      </div>
+      <div class="founder-copy">
+        <div class="eyebrow reveal">04 / Founder</div>
+        <h2 class="display reveal">Built by<br><span style="color:var(--acid)">hannanbuilds.</span></h2>
+        <p class="lead reveal">hannanbuilds is the personal identity behind HannanLabs, where the clients, experiments, and day-to-day building happen.</p>
+        <p class="body reveal">HannanLabs keeps things separate on purpose. The personal work stays personal. The studio is where products live, and where they grow over time without getting tangled up.</p>
+        <div class="socials reveal">
+          <a class="social-link magnetic" href="https://www.instagram.com/hannanbuilds/" target="_blank" rel="noopener noreferrer">Instagram · @hannanbuilds</a>
+          <a class="social-link magnetic" href="https://hannanbuilds.vercel.app/" target="_blank" rel="noopener noreferrer">Portfolio · hannanbuilds.vercel.app</a>
+          <a class="social-link magnetic" href="https://www.linkedin.com/in/abdulhannan-projects/" target="_blank" rel="noopener noreferrer">LinkedIn · Abdul Hannan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section future">
+    <div class="wrap">
+      <div class="future-wrap reveal">
+        <div class="future-content">
+          <div><div class="eyebrow">05 / Next in the lab</div><h2 class="display" style="margin-top:22px">Something else is cooking.</h2><p>More products are in the works. Nothing to show yet, but when there is, it will show up here.</p><a href="#top" class="future-btn magnetic">Back to the top</a></div>
+          <img class="logo-mark" src="logo.png" alt="HannanLabs" style="width:72px;height:72px;flex-basis:72px;align-self:flex-end;border-radius:14px">
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div class="footer-meta">© 2026 HannanLabs · Product studio by hannanbuilds<br>Products, systems & experiments.</div>
+    <div class="footer-nav"><a href="https://www.instagram.com/hannanlabs_/" target="_blank" rel="noopener noreferrer">@hannanlabs_</a><a href="https://www.instagram.com/hannanbuilds/" target="_blank" rel="noopener noreferrer">@hannanbuilds</a><a href="https://www.linkedin.com/in/abdulhannan-projects/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+  </div>
+</footer>
+
+<!-- Product dossier modal -->
+<div class="modal" id="productModal" aria-hidden="true">
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <section class="modal-panel" id="modalPanel" role="dialog" aria-modal="true" aria-label="Product dossier">
+    <div class="modal-inner">
+      <div class="modal-top"><a class="logo" href="#top"><img class="logo-mark" src="logo.png" alt="HannanLabs"><span class="logo-word">HANNAN<span>LABS</span></span></a><button class="close" id="modalClose" aria-label="Close">×</button></div>
+      <div id="modalContent"></div>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/lib/anime.iife.min.js"></script>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js';
+
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+const qs = (selector, root = document) => root.querySelector(selector);
+const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+/* ---------------- WebGL hero field ---------------- */
+const hero = qs('.hero');
+const canvas = qs('#webgl');
+let renderer = null;
+let geometry = null;
+let material = null;
+let scene = null;
+let camera = null;
+let points = null;
+let core = null;
+let core2 = null;
+let rafId = 0;
+let webglActive = false;
+
+function initWebGL() {
+  if (!canvas || !hero) return;
+
+  try {
+    renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: !coarsePointer,
+      alpha: true,
+      powerPreference: 'high-performance'
+    });
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, coarsePointer ? 1.25 : 1.65));
+    renderer.setSize(window.innerWidth, window.innerHeight, false);
+    renderer.setClearColor(0x000000, 0);
+
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0, 10);
+
+    const particleCount = coarsePointer ? 900 : 1900;
+    const positions = new Float32Array(particleCount * 3);
+    const sizes = new Float32Array(particleCount);
+    const phases = new Float32Array(particleCount);
+
+    for (let i = 0; i < particleCount; i++) {
+      const i3 = i * 3;
+      const r = 5.5 * Math.cbrt(Math.random());
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      positions[i3] = r * Math.sin(phi) * Math.cos(theta) * 1.22;
+      positions[i3 + 1] = r * Math.sin(phi) * Math.sin(theta) * 0.75;
+      positions[i3 + 2] = r * Math.cos(phi) * 0.75;
+      sizes[i] = Math.random() * 0.95 + 0.25;
+      phases[i] = Math.random() * Math.PI * 2;
+    }
+
+    geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
+    geometry.setAttribute('aPhase', new THREE.BufferAttribute(phases, 1));
+
+    material = new THREE.ShaderMaterial({
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      uniforms: {
+        uTime: { value: 0 },
+        uColor: { value: new THREE.Color('#d9ff3a') }
+      },
+      vertexShader: `
+        attribute float aSize;
+        attribute float aPhase;
+        uniform float uTime;
+        varying float vAlpha;
+        void main(){
+          vec3 p = position;
+          float wobble = sin(uTime * .32 + aPhase) * .065;
+          p.x += sin(uTime * .16 + aPhase) * wobble;
+          p.y += cos(uTime * .20 + aPhase * .8) * wobble;
+          vec4 mv = modelViewMatrix * vec4(p, 1.0);
+          gl_PointSize = aSize * (32.0 / -mv.z);
+          gl_Position = projectionMatrix * mv;
+          vAlpha = .18 + .68 * (.5 + .5 * sin(uTime * .75 + aPhase));
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 uColor;
+        varying float vAlpha;
+        void main(){
+          float d = distance(gl_PointCoord, vec2(.5));
+          float a = smoothstep(.5, .06, d) * vAlpha;
+          gl_FragColor = vec4(uColor, a);
+        }
+      `
+    });
+
+    points = new THREE.Points(geometry, material);
+    scene.add(points);
+
+    core = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(1.35, 3),
+      new THREE.MeshBasicMaterial({ color: 0xd9ff3a, wireframe: true, transparent: true, opacity: 0.07 })
+    );
+    scene.add(core);
+
+    core2 = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(1.55, 2),
+      new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.035 })
+    );
+    scene.add(core2);
+
+    let mx = 0;
+    let my = 0;
+    let smx = 0;
+    let smy = 0;
+
+    const onPointerMove = (event) => {
+      if (coarsePointer) return;
+      mx = (event.clientX / window.innerWidth - 0.5) * 2;
+      my = (event.clientY / window.innerHeight - 0.5) * 2;
+    };
+
+    const resize = () => {
+      if (!renderer || !camera) return;
+      renderer.setSize(window.innerWidth, window.innerHeight, false);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    };
+
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
+    window.addEventListener('resize', resize, { passive: true });
+
+    const render = (time = 0) => {
+      if (!renderer || !scene || !camera) return;
+
+      if (!reduced) {
+        const seconds = time * 0.001;
+        material.uniforms.uTime.value = seconds;
+        smx += (mx - smx) * 0.035;
+        smy += (my - smy) * 0.035;
+        points.rotation.y += 0.00055;
+        points.rotation.x += 0.00014;
+        core.rotation.y += 0.0015;
+        core.rotation.z -= 0.00045;
+        core2.rotation.y -= 0.0006;
+        camera.position.x += (smx * 0.34 - camera.position.x) * 0.02;
+        camera.position.y += (-smy * 0.2 - camera.position.y) * 0.02;
+        camera.lookAt(0, 0, 0);
+        rafId = requestAnimationFrame(render);
+      }
+
+      renderer.render(scene, camera);
+    };
+
+    canvas.addEventListener('webglcontextlost', (event) => {
+      event.preventDefault();
+      webglActive = false;
+      if (rafId) cancelAnimationFrame(rafId);
+      hero.classList.add('webgl-fallback');
+      canvas.style.visibility = 'hidden';
+    }, { passive: false });
+
+    webglActive = true;
+    hero.classList.remove('webgl-fallback');
+    if (reduced) {
+      render(0);
+    } else {
+      rafId = requestAnimationFrame(render);
+    }
+  } catch (error) {
+    console.warn('[HannanLabs] WebGL disabled:', error);
+    webglActive = false;
+    hero.classList.add('webgl-fallback');
+    canvas.style.visibility = 'hidden';
+  }
+}
+
+initWebGL();
+
+/* ---------------- GSAP / ScrollTrigger ---------------- */
+const hasGSAP = typeof window.gsap !== 'undefined';
+const hasScrollTrigger = hasGSAP && typeof window.ScrollTrigger !== 'undefined';
+
+if (hasGSAP) {
+  if (hasScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+  const nav = qs('#nav');
+
+  if (hasScrollTrigger) {
+    ScrollTrigger.create({
+      start: 'top -30',
+      onToggle: (self) => nav?.classList.toggle('scrolled', self.isActive)
+    });
+  } else if (window.scrollY > 30) {
+    nav?.classList.add('scrolled');
+  }
+
+  qsa('.reveal').forEach((element, index) => {
+    if (reduced) return;
+    gsap.set(element, { opacity: 0, y: 30 });
+    if (hasScrollTrigger) {
+      gsap.to(element, {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        delay: (index % 5) * 0.035,
+        scrollTrigger: { trigger: element, start: 'top 88%', once: true }
+      });
+    } else {
+      gsap.to(element, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay: (index % 5) * 0.035 });
+    }
+  });
+
+  if (!reduced && hasScrollTrigger) {
+    const marquee = qs('#marqueeTrack');
+    if (marquee) {
+      gsap.to(marquee, {
+        xPercent: -15,
+        ease: 'none',
+        scrollTrigger: { trigger: '.marquee', start: 'top bottom', end: 'bottom top', scrub: 1.1 }
+      });
+    }
+
+    qsa('[data-parallax]').forEach((element) => {
+      gsap.to(element, {
+        y: () => Number(element.dataset.parallax) * 90,
+        ease: 'none',
+        scrollTrigger: { trigger: element, start: 'top bottom', end: 'bottom top', scrub: 1.4 }
+      });
+    });
+  }
+} else {
+  console.warn('[HannanLabs] GSAP unavailable. Core interactions remain usable without enhanced scroll motion.');
+}
+
+if (window.ScrollTrigger && window.matchMedia('(orientation: portrait)').matches) {
+  // Let the browser settle the first mobile layout before ScrollTrigger measures positions.
+  requestAnimationFrame(() => window.ScrollTrigger.refresh());
+}
+
+/* ---------------- Anime.js accent motion ---------------- */
+if (window.anime && !reduced) {
+  try {
+    anime.animate('.hero h1 .acid', {
+      opacity: [0.38, 1],
+      duration: 1200,
+      ease: 'inOutSine',
+      alternate: true,
+      loop: true
+    });
+    anime.animate('.live-dot i', {
+      scale: [0.7, 1.25],
+      duration: 1000,
+      ease: 'inOutSine',
+      alternate: true,
+      loop: true
+    });
+  } catch (error) {
+    console.warn('[HannanLabs] Anime.js accent animation skipped:', error);
+  }
+}
+
+/* ---------------- Cursor + magnetic interactions ---------------- */
+if (!coarsePointer && hasGSAP) {
+  document.body.classList.add('cursor-ready');
+  const cursor = qs('#cursor');
+  const dot = qs('#cursor-dot');
+  let cx = window.innerWidth / 2;
+  let cy = window.innerHeight / 2;
+  let dx = cx;
+  let dy = cy;
+
+  window.addEventListener('pointermove', (event) => {
+    dx = event.clientX;
+    dy = event.clientY;
+  }, { passive: true });
+
+  gsap.ticker.add(() => {
+    cx += (dx - cx) * 0.18;
+    cy += (dy - cy) * 0.18;
+    gsap.set(cursor, { x: cx, y: cy });
+    gsap.set(dot, { x: dx, y: dy });
+  });
+
+  qsa('a,button,.product-row').forEach((element) => {
+    element.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    element.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  qsa('.magnetic').forEach((element) => {
+    element.addEventListener('mousemove', (event) => {
+      const rect = element.getBoundingClientRect();
+      const x = (event.clientX - (rect.left + rect.width / 2)) * 0.16;
+      const y = (event.clientY - (rect.top + rect.height / 2)) * 0.16;
+      gsap.to(element, { x, y, duration: 0.35, ease: 'power3.out', overwrite: true });
+    });
+
+    element.addEventListener('mouseleave', () => {
+      gsap.to(element, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1,.55)', overwrite: true });
+    });
+  });
+}
+
+/* ---------------- Product dossier system ---------------- */
+const products = {
+  workroom: {
+    number: '01',
+    name: 'workroomWR',
+    kicker: 'Workflow tool · Live product',
+    summary: 'A workspace for agencies and freelancers who need to manage projects, files, approvals, payments and communication with clients, without jumping between five different tools.',
+    url: 'https://workroom-by-hb.vercel.app/',
+    story: 'workroomWR started from a simple frustration: client work gets scattered across email, spreadsheets, messaging apps, and file shares. This puts it all back in one place: projects, milestones, deliverables, payments, and conversation.',
+    bullets: [
+      'Project rooms with clear client context',
+      'Milestones, files and version tracking',
+      'Approvals, comments and project chat',
+      'Payment status and final delivery handoff'
+    ]
+  },
+  clinicflow: {
+    number: '02',
+    name: 'ClinicFlow Pro',
+    kicker: 'Healthcare tool · Live product',
+    summary: 'A workflow tool for clinics that connects appointments, patient records, prescriptions, billing and analytics, built for how clinics actually work day to day.',
+    url: 'https://clinic-flow-landingpage.vercel.app/',
+    story: 'ClinicFlow Pro connects the operational chain from patient registration to follow-up. Each role, admin, doctor, receptionist, gets a dashboard that shows what matters to them. The AI features are there to help with routine tasks, not replace clinical thinking.',
+    bullets: [
+      'Scheduling with doctor availability and reminders',
+      'Patient records and digital prescriptions',
+      'Billing, reports and role-based dashboards',
+      'Messaging workflows and smart automation'
+    ]
+  },
+  future: {
+    number: '03',
+    name: 'Next Product',
+    kicker: 'In development · Coming soon',
+    summary: 'A new product is being built inside HannanLabs. Details will be shared when it is ready.',
+    url: null,
+    story: 'This stays quiet on purpose. When the product is further along, this page will have the name, what it does, and where to find it.',
+    bullets: [
+      'Currently in active development',
+      'Built with the HannanLabs product system',
+      'Launch details will appear here',
+      'More information coming soon'
+    ]
+  }
+};
+
+const modal = qs('#productModal');
+const backdrop = qs('#modalBackdrop');
+const panel = qs('#modalPanel');
+const content = qs('#modalContent');
+const closeBtn = qs('#modalClose');
+let lastFocus = null;
+let previousBodyOverflow = '';
+
+function renderProduct(key) {
+  const product = products[key];
+  if (!product || !content) return;
+
+  const bullets = product.bullets.map((item) => `<li>${item}</li>`).join('');
+  const action = product.url
+    ? `<a class="btn primary magnetic" href="${product.url}" target="_blank" rel="noopener noreferrer">View product</a>`
+    : '<span class="btn" aria-disabled="true">Coming soon</span>';
+
+  content.innerHTML = `
+    <div class="modal-hero">
+      <div>
+        <div class="modal-kicker">${product.number} / ${product.kicker}</div>
+        <h2 class="display">${product.name}</h2>
+      </div>
+      <p class="modal-summary">${product.summary}</p>
+    </div>
+    <div class="modal-cols">
+      <div class="modal-card">
+        <h4>The idea</h4>
+        <p>${product.story}</p>
+      </div>
+      <div class="modal-card">
+        <h4>What it includes</h4>
+        <ul>${bullets}</ul>
+      </div>
+    </div>
+    <div class="modal-actions">
+      ${action}
+      <button class="btn" type="button" id="inlineClose">Close</button>
+    </div>
+  `;
+}
+
+function getDialogFocusables() {
+  if (!panel) return [];
+  return qsa('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])', panel)
+    .filter((element) => !element.hasAttribute('aria-hidden'));
+}
+
+function openProduct(key) {
+  if (!products[key] || !modal || !panel || !backdrop) return;
+
+  lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  previousBodyOverflow = document.body.style.overflow;
+  renderProduct(key);
+
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  if (hasGSAP) {
+    gsap.killTweensOf([backdrop, panel]);
+    gsap.fromTo(backdrop, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' });
+    gsap.fromTo(panel, { opacity: 0, y: 30, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'power3.out' });
+  } else {
+    backdrop.style.opacity = '1';
+    panel.style.opacity = '1';
+    panel.style.transform = 'none';
+  }
+
+  qs('#inlineClose', panel)?.addEventListener('click', closeProduct, { once: true });
+  closeBtn?.focus();
+}
+
+function closeProduct() {
+  if (!modal || !panel || !backdrop) return;
+
+  const finish = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    panel.style.transform = '';
+    panel.style.opacity = '';
+    backdrop.style.opacity = '';
+    document.body.style.overflow = previousBodyOverflow;
+    lastFocus?.focus();
+  };
+
+  if (hasGSAP) {
+    gsap.killTweensOf([backdrop, panel]);
+    gsap.to(backdrop, { opacity: 0, duration: 0.22, ease: 'power2.out' });
+    gsap.to(panel, { opacity: 0, y: 24, scale: 0.985, duration: 0.22, ease: 'power2.in', onComplete: finish });
+  } else {
+    finish();
+  }
+}
+
+qsa('[data-product]').forEach((element) => {
+  element.addEventListener('click', (event) => {
+    event.preventDefault();
+    openProduct(element.dataset.product);
+  });
+});
+
+backdrop?.addEventListener('click', closeProduct);
+closeBtn?.addEventListener('click', closeProduct);
+
+modal?.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    closeProduct();
+    return;
+  }
+
+  if (event.key !== 'Tab') return;
+  const focusables = getDialogFocusables();
+  if (!focusables.length) return;
+
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+});
+
+/* ---------------- Mobile navigation ---------------- */
+const menu = qs('#menuToggle');
+const navLinks = qs('#primary-nav');
+
+function setMenu(open) {
+  if (!menu || !navLinks) return;
+  navLinks.classList.toggle('is-open', open);
+  menu.setAttribute('aria-expanded', String(open));
+  menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+}
+
+menu?.addEventListener('click', () => {
+  setMenu(menu.getAttribute('aria-expanded') !== 'true');
+});
+
+qsa('.nav-links a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+
+document.addEventListener('click', (event) => {
+  if (!navLinks || !menu) return;
+  if (window.innerWidth > 1100) return;
+  const target = event.target;
+  if (!(target instanceof Node)) return;
+  if (!navLinks.contains(target) && !menu.contains(target)) setMenu(false);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') setMenu(false);
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 1100) setMenu(false);
+}, { passive: true });
+
+/* prevent browser jump on future placeholder */
+qsa('a[href="#"]').forEach((link) => link.addEventListener('click', (event) => event.preventDefault()));
+
+/* Keep the page useful even if an enhancement library fails. */
+if (!reduced && hasGSAP && hasScrollTrigger) {
+  requestAnimationFrame(() => ScrollTrigger.refresh());
+}
+
+window.addEventListener('beforeunload', () => {
+  if (rafId) cancelAnimationFrame(rafId);
+  if (geometry) geometry.dispose();
+  if (material) material.dispose();
+  if (renderer) renderer.dispose();
+});
+
+/* Disable right-click with message */
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+  const msg = document.createElement('div');
+  msg.textContent = 'Right click is not available on this page';
+  msg.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:12px 24px;background:rgba(10,10,10,.92);color:#a4aaa1;border:1px solid rgba(255,255,255,.12);border-radius:12px;font:500 12px DM Mono,monospace;letter-spacing:.06em;z-index:99999;pointer-events:none;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)';
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 2000);
+});
+
+/* Disable common dev tools shortcuts */
+document.addEventListener('keydown', (e) => {
+  if (
+    e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c') ||
+    e.key === 'F12' ||
+    (e.metaKey && e.altKey && (e.key === 'I' || e.key === 'i' || e.key === 'C' || e.key === 'c' || e.key === 'J' || e.key === 'j'))
+  ) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+/* Disable drag on images */
+document.addEventListener('dragstart', (e) => {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+});
+</script>
+</body>
+</html>
