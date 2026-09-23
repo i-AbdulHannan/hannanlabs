@@ -103,47 +103,52 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
 /* Product index */
 .products-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:58px}
 .products-head h2{font-size:clamp(52px,8vw,118px);max-width:870px}
-.product-index{border-top:1px solid var(--line)}
-.product-row{position:relative;display:grid;grid-template-columns:90px 1fr 120px 180px 34px;gap:24px;align-items:center;padding:28px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:all .4s cubic-bezier(.23,1,.32,1)}
-.product-row:before{content:"";position:absolute;inset:0 -18px;background:rgba(255,255,255,.025);transform:scaleY(0);transform-origin:center;transition:transform .4s ease}
-.product-row:hover:before{transform:scaleY(1)}
+.product-index{display:flex;flex-direction:column;gap:6px}
+.product-row{position:relative;display:grid;grid-template-columns:90px 1fr 120px 180px 34px;gap:24px;align-items:center;padding:24px 28px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:16px;cursor:pointer;transition:all .5s cubic-bezier(.23,1,.32,1)}
+.product-row:hover{background:rgba(255,255,255,.04);border-color:rgba(217,255,58,.15);box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 0 1px rgba(217,255,58,.06);transform:translateY(-2px)}
 .product-row > *{position:relative;z-index:1}
-.product-no{font:500 12px DM Mono,monospace;color:#6c726c;transition:color .3s ease}
+.product-no{font:500 11px DM Mono,monospace;color:#555a52;letter-spacing:.06em;transition:color .3s ease}
 .product-row:hover .product-no{color:var(--acid)}
-.product-main{display:flex;align-items:center;gap:18px}
-.product-orb{width:11px;height:11px;border-radius:50%;background:var(--acid);box-shadow:0 0 20px rgba(217,255,58,.22);flex:0 0 11px;transition:box-shadow .3s ease}
-.product-row:hover .product-orb{box-shadow:0 0 28px rgba(217,255,58,.4)}
-.product-name{font-family:Space Grotesk,sans-serif;font-size:clamp(26px,3vw,46px);letter-spacing:-.055em}
-.product-kind{font:500 11px DM Mono,monospace;text-transform:uppercase;letter-spacing:.12em;color:#8e948b;transition:color .3s ease}
-.product-row:hover .product-kind{color:#c0c5bc}
-.product-status{font:500 10px DM Mono,monospace;text-transform:uppercase;letter-spacing:.14em;color:var(--acid);justify-self:start}
-.product-status.coming{color:#a5aaa2}
-.product-arrow{font-size:20px;color:#969c94;transition:color .3s ease}
-.product-row:hover .product-arrow{color:var(--acid)}
+.product-main{display:flex;align-items:center;gap:16px}
+.product-orb{width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px rgba(217,255,58,.2);flex:0 0 8px;transition:all .4s ease}
+.product-row:hover .product-orb{box-shadow:0 0 20px rgba(217,255,58,.5);transform:scale(1.3)}
+.product-name{font-family:Space Grotesk,sans-serif;font-size:clamp(22px,2.5vw,38px);letter-spacing:-.05em;font-weight:600;transition:color .3s ease}
+.product-row:hover .product-name{color:#fff}
+.product-kind{font:500 10px DM Mono,monospace;text-transform:uppercase;letter-spacing:.14em;color:#6b7068;transition:color .3s ease}
+.product-row:hover .product-kind{color:#9ca396}
+.product-status{font:500 9px DM Mono,monospace;text-transform:uppercase;letter-spacing:.16em;color:var(--acid);justify-self:start;padding:4px 10px;border:1px solid rgba(217,255,58,.2);border-radius:20px;background:rgba(217,255,58,.05)}
+.product-status.coming{color:#8a8f86;border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
+.product-arrow{font-size:18px;color:#555a52;transition:all .4s cubic-bezier(.23,1,.32,1)}
+.product-row:hover .product-arrow{color:var(--acid);transform:translate(3px,-3px)}
 
 /* Product stages */
-.product-stage{min-height:80vh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:stretch;margin-top:110px}
-.product-visual{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(150deg,#141614,#090a09);min-height:580px}
-.product-visual .grain{position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 72% 24%,rgba(217,255,58,.14),transparent 26%),radial-gradient(circle at 24% 80%,rgba(255,255,255,.06),transparent 28%);pointer-events:none}
-.product-visual .ring{position:absolute;border:1px solid rgba(217,255,58,.25);border-radius:50%;width:520px;height:520px;right:-100px;top:-100px;z-index:2;pointer-events:none}
-.product-visual .ring.r2{width:320px;height:320px;right:5%;top:12%;border-color:rgba(255,255,255,.08)}
-.product-visual .grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:50px 50px;opacity:.22;pointer-events:none}
-.product-visual .label{position:absolute;left:34px;top:32px;font:500 10px DM Mono,monospace;letter-spacing:.16em;color:#c9cdc6;text-transform:uppercase;z-index:5;pointer-events:none}
-.product-visual .massive{position:absolute;left:34px;bottom:28px;font-family:Space Grotesk,sans-serif;font-size:clamp(60px,8vw,126px);letter-spacing:-.08em;line-height:.84;max-width:80%;font-weight:600;z-index:5;pointer-events:none}
+.product-stage{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:stretch;margin-top:80px}
+.product-visual{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.08);border-radius:24px;background:linear-gradient(160deg,rgba(20,22,20,.8),rgba(9,10,9,.9));min-height:560px;transition:border-color .5s ease,box-shadow .6s ease}
+.product-visual:hover{border-color:rgba(217,255,58,.12);box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 40px rgba(217,255,58,.03)}
+.product-visual .grain{position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 72% 24%,rgba(217,255,58,.1),transparent 26%),radial-gradient(circle at 24% 80%,rgba(255,255,255,.04),transparent 28%);pointer-events:none}
+.product-visual .ring{position:absolute;border:1px solid rgba(217,255,58,.15);border-radius:50%;width:520px;height:520px;right:-100px;top:-100px;z-index:2;pointer-events:none}
+.product-visual .ring.r2{width:320px;height:320px;right:5%;top:12%;border-color:rgba(255,255,255,.05)}
+.product-visual .grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.product-visual .label{position:absolute;left:28px;top:24px;font:600 9px DM Mono,monospace;letter-spacing:.18em;color:rgba(255,255,255,.3);text-transform:uppercase;z-index:5;pointer-events:none}
+.product-visual .massive{position:absolute;left:28px;bottom:24px;font-family:Space Grotesk,sans-serif;font-size:clamp(56px,8vw,120px);letter-spacing:-.07em;line-height:.86;max-width:80%;font-weight:700;z-index:5;pointer-events:none}
 .product-visual .massive span{color:var(--acid)}
-.product-info{display:flex;flex-direction:column;justify-content:space-between;border-top:1px solid var(--line);padding-top:20px}
-.product-info-top .tag{font:500 11px DM Mono,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--acid)}
-.product-info h3{font-size:clamp(42px,6vw,88px);margin-top:18px}
-.product-info p{margin-top:24px;color:#a8aea6;line-height:1.75;font-size:16px;max-width:560px}
-.feature-list{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
-.feature{padding:16px 0;border-bottom:1px solid var(--line);font:500 12px DM Mono,monospace;color:#b4b9b1;display:flex;justify-content:space-between;gap:12px;transition:color .3s ease}
-.feature:hover{color:var(--acid)}
-.feature strong{font-family:Manrope,sans-serif;font-size:12px;color:#ecefe9;font-weight:600}
-.product-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:0 18px;border:1px solid var(--line-2);border-radius:13px;font-size:13px;font-weight:700;transition:transform .2s ease,border-color .2s ease,background .2s ease,color .2s ease}
-.btn.primary{background:var(--acid);color:#0a0b0a;border-color:var(--acid)}
-.btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.32)}
-.btn.primary:hover{background:#e4ff6b}
+.product-visual .ambient{position:absolute;width:400px;height:400px;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.product-visual .ambient.green{background:rgba(217,255,58,.06);right:-100px;top:-100px}
+.product-visual .ambient.blue{background:rgba(56,120,255,.04);left:-80px;bottom:-80px}
+.product-info{display:flex;flex-direction:column;justify-content:space-between;padding:0}
+.product-info-top .tag{font:600 9px DM Mono,monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);padding:5px 12px;background:rgba(217,255,58,.06);border:1px solid rgba(217,255,58,.15);border-radius:20px;display:inline-block}
+.product-info h3{font-size:clamp(40px,5.5vw,82px);margin-top:20px;letter-spacing:-.06em;line-height:.92}
+.product-info p{margin-top:20px;color:#949a90;line-height:1.7;font-size:15px;max-width:520px}
+.feature-list{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.feature{padding:14px 16px;border:1px solid rgba(255,255,255,.05);border-radius:12px;font:500 11px DM Mono,monospace;color:#8a9086;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:all .3s ease;background:rgba(255,255,255,.02)}
+.feature:hover{border-color:rgba(217,255,58,.15);color:var(--acid);background:rgba(217,255,255,.03)}
+.feature strong{font-family:Manrope,sans-serif;font-size:11px;color:#d0d4cc;font-weight:600}
+.product-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 20px;border-radius:100px;font-size:12px;font-weight:700;transition:all .4s cubic-bezier(.23,1,.32,1);letter-spacing:.02em}
+.btn.primary{background:var(--acid);color:#0a0b0a;border:1px solid var(--acid)}
+.btn.primary:hover{background:#c8e632;transform:translateY(-2px);box-shadow:0 8px 24px rgba(217,255,58,.25)}
+.btn{background:rgba(255,255,255,.06);color:#c8ccc4;border:1px solid rgba(255,255,255,.1)}
+.btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);transform:translateY(-1px)}
 
 /* Studio DNA */
 .dna{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -226,7 +231,7 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
   .modal-hero{grid-template-columns:1fr;gap:30px}
 }
 @media (max-width:900px){
-  .product-row{grid-template-columns:60px 1fr 150px 25px;gap:16px;padding:24px 0}
+  .product-row{grid-template-columns:60px 1fr 120px 25px;gap:16px;padding:20px 18px}
   .product-name{font-size:clamp(22px,4vw,36px)}
   .products-head{flex-direction:column;align-items:flex-start;gap:16px}
   .products-head h2{font-size:clamp(42px,10vw,80px)}
@@ -251,12 +256,12 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
   .marquee-item{font-size:22px;padding:18px 24px}
   .products-head{margin-bottom:30px}
   .products-head h2{font-size:clamp(38px,12vw,72px)}
-  .product-row{grid-template-columns:36px 1fr 20px;gap:10px;padding:20px 0}
+  .product-row{grid-template-columns:36px 1fr 20px;gap:10px;padding:16px 14px}
   .product-kind,.product-status{display:none}
   .product-name{font-size:22px}
   .product-no{font-size:9px}
   .product-stage{margin-top:60px}
-  .product-visual{min-height:320px;border-radius:20px}
+  .product-visual{min-height:320px;border-radius:18px}
   .product-visual .ring{width:260px;height:260px;right:-80px;top:-80px}
   .product-visual .ring.r2{width:170px;height:170px;right:8%;top:15%}
   .product-visual .massive{left:20px;bottom:20px;font-size:clamp(48px,12vw,68px)}
@@ -264,11 +269,11 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
   .product-info{padding-top:16px}
   .product-info h3{font-size:clamp(34px,8vw,56px);margin-top:14px}
   .product-info p{font-size:14px;margin-top:18px;line-height:1.7}
-  .feature-list{grid-template-columns:1fr;margin-top:24px}
-  .feature{padding:12px 0;font-size:11px}
-  .feature strong{font-size:11px}
-  .product-actions{margin-top:28px;gap:8px}
-  .btn{min-height:42px;padding:0 14px;font-size:12px;border-radius:11px}
+  .feature-list{grid-template-columns:1fr;margin-top:20px;gap:6px}
+  .feature{padding:10px 12px;font-size:10px}
+  .feature strong{font-size:10px}
+  .product-actions{margin-top:24px;gap:8px}
+  .btn{min-height:40px;padding:0 14px;font-size:11px;border-radius:100px}
   .dna{grid-template-columns:1fr}
   .dna-card{min-height:220px;padding:22px}
   .dna-card h3{font-size:28px;margin-top:50px}
@@ -320,7 +325,7 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
   .big-copy{font-size:clamp(30px,8vw,48px)}
   .intro-copy{font-size:14px}
   .products-head h2{font-size:clamp(32px,12vw,56px)}
-  .product-row{grid-template-columns:30px 1fr 16px;gap:8px;padding:16px 0}
+  .product-row{grid-template-columns:30px 1fr 16px;gap:8px;padding:14px 12px}
   .product-name{font-size:18px}
   .product-orb{width:8px;height:8px;flex:0 0 8px}
   .product-stage{margin-top:48px}
@@ -329,9 +334,9 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
   .product-visual .label{left:16px;top:14px;font-size:8px;letter-spacing:.1em}
   .product-info h3{font-size:clamp(30px,10vw,48px)}
   .product-info p{font-size:13px}
-  .feature{padding:10px 0;font-size:10px}
-  .feature strong{font-size:10px}
-  .btn{min-height:38px;padding:0 12px;font-size:11px;border-radius:10px}
+  .feature{padding:8px 10px;font-size:9px;border-radius:8px}
+  .feature strong{font-size:9px}
+  .btn{min-height:36px;padding:0 12px;font-size:10px;border-radius:100px}
   .dna-card{min-height:200px;padding:18px;border-radius:14px}
   .dna-card .num{font-size:9px}
   .dna-card h3{font-size:24px;margin-top:44px}
@@ -462,6 +467,7 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
 
       <article class="product-stage reveal" id="workroom-stage">
         <div class="product-visual" data-parallax="1">
+          <div class="ambient green"></div><div class="ambient blue"></div>
           <div class="grain"></div><div class="grid"></div><div class="ring"></div><div class="ring r2"></div>
           <span class="label">PRODUCT / 001 / WORKROOMWR</span><div class="massive">ONE<br><span>ROOM.</span></div>
         </div>
@@ -501,6 +507,7 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
           </div>
         </div>
         <div class="product-visual" data-parallax="-.7">
+          <div class="ambient green"></div><div class="ambient blue"></div>
           <div class="grain"></div><div class="grid"></div><div class="ring" style="right:-120px;top:-100px"></div><div class="ring r2" style="right:12%;top:22%"></div>
           <span class="label">PRODUCT / 002 / CLINICFLOW PRO</span><div class="massive">FLOW<br><span>STATE.</span></div>
         </div>
