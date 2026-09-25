@@ -79,7 +79,7 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
 .live-dot{display:inline-flex;align-items:center;gap:8px;font:500 11px DM Mono,monospace;letter-spacing:.15em;text-transform:uppercase;color:#d4d8d1}
 .live-dot i{width:8px;height:8px;background:var(--acid);border-radius:50%;box-shadow:0 0 18px rgba(217,255,58,.75)}
 .hero h1{font-size:clamp(72px,11.5vw,184px);max-width:1180px}
-.hero h1 .acid{color:var(--acid)}
+.acid{color:var(--acid)}
 .hero-sub{margin-top:34px;max-width:650px;color:#b7bcb4;font-size:clamp(16px,1.55vw,22px);line-height:1.55}
 .hero-bottom{margin-top:80px;display:flex;justify-content:space-between;align-items:end;gap:30px}
 .hero-note{max-width:360px;font-size:12px;line-height:1.7;color:#8b9089}
@@ -101,54 +101,97 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
 .intro-copy + .intro-copy{margin-top:22px}
 
 /* Product index */
-.products-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:58px}
-.products-head h2{font-size:clamp(52px,8vw,118px);max-width:870px}
-.product-index{display:flex;flex-direction:column;gap:6px}
-.product-row{position:relative;display:grid;grid-template-columns:90px 1fr 120px 180px 34px;gap:24px;align-items:center;padding:24px 28px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:16px;cursor:pointer;transition:all .5s cubic-bezier(.23,1,.32,1)}
-.product-row:hover{background:rgba(255,255,255,.04);border-color:rgba(217,255,58,.15);box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 0 1px rgba(217,255,58,.06);transform:translateY(-2px)}
-.product-row > *{position:relative;z-index:1}
-.product-no{font:500 11px DM Mono,monospace;color:#555a52;letter-spacing:.06em;transition:color .3s ease}
-.product-row:hover .product-no{color:var(--acid)}
-.product-main{display:flex;align-items:center;gap:16px}
-.product-orb{width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px rgba(217,255,58,.2);flex:0 0 8px;transition:all .4s ease}
-.product-row:hover .product-orb{box-shadow:0 0 20px rgba(217,255,58,.5);transform:scale(1.3)}
-.product-name{font-family:Space Grotesk,sans-serif;font-size:clamp(22px,2.5vw,38px);letter-spacing:-.05em;font-weight:600;transition:color .3s ease}
-.product-row:hover .product-name{color:#fff}
-.product-kind{font:500 10px DM Mono,monospace;text-transform:uppercase;letter-spacing:.14em;color:#6b7068;transition:color .3s ease}
-.product-row:hover .product-kind{color:#9ca396}
-.product-status{font:500 9px DM Mono,monospace;text-transform:uppercase;letter-spacing:.16em;color:var(--acid);justify-self:start;padding:4px 10px;border:1px solid rgba(217,255,58,.2);border-radius:20px;background:rgba(217,255,58,.05)}
-.product-status.coming{color:#8a8f86;border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
-.product-arrow{font-size:18px;color:#555a52;transition:all .4s cubic-bezier(.23,1,.32,1)}
-.product-row:hover .product-arrow{color:var(--acid);transform:translate(3px,-3px)}
+.products-head{display:flex;justify-content:space-between;gap:48px;align-items:end;margin-bottom:72px}
+.products-head h2{font-size:clamp(56px,8vw,126px);max-width:920px}
 
-/* Product stages */
-.product-stage{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:stretch;margin-top:80px}
-.product-visual{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.08);border-radius:24px;background:linear-gradient(160deg,rgba(20,22,20,.8),rgba(9,10,9,.9));min-height:560px;transition:border-color .5s ease,box-shadow .6s ease}
-.product-visual:hover{border-color:rgba(217,255,58,.12);box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 40px rgba(217,255,58,.03)}
-.product-visual .grain{position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 72% 24%,rgba(217,255,58,.1),transparent 26%),radial-gradient(circle at 24% 80%,rgba(255,255,255,.04),transparent 28%);pointer-events:none}
-.product-visual .ring{position:absolute;border:1px solid rgba(217,255,58,.15);border-radius:50%;width:520px;height:520px;right:-100px;top:-100px;z-index:2;pointer-events:none}
-.product-visual .ring.r2{width:320px;height:320px;right:5%;top:12%;border-color:rgba(255,255,255,.05)}
-.product-visual .grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
-.product-visual .label{position:absolute;left:28px;top:24px;font:600 9px DM Mono,monospace;letter-spacing:.18em;color:rgba(255,255,255,.3);text-transform:uppercase;z-index:5;pointer-events:none}
-.product-visual .massive{position:absolute;left:28px;bottom:24px;font-family:Space Grotesk,sans-serif;font-size:clamp(56px,8vw,120px);letter-spacing:-.07em;line-height:.86;max-width:80%;font-weight:700;z-index:5;pointer-events:none}
-.product-visual .massive span{color:var(--acid)}
-.product-visual .ambient{position:absolute;width:400px;height:400px;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
-.product-visual .ambient.green{background:rgba(217,255,58,.06);right:-100px;top:-100px}
-.product-visual .ambient.blue{background:rgba(56,120,255,.04);left:-80px;bottom:-80px}
-.product-info{display:flex;flex-direction:column;justify-content:space-between;padding:0}
-.product-info-top .tag{font:600 9px DM Mono,monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);padding:5px 12px;background:rgba(217,255,58,.06);border:1px solid rgba(217,255,58,.15);border-radius:20px;display:inline-block}
-.product-info h3{font-size:clamp(40px,5.5vw,82px);margin-top:20px;letter-spacing:-.06em;line-height:.92}
-.product-info p{margin-top:20px;color:#949a90;line-height:1.7;font-size:15px;max-width:520px}
-.feature-list{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.feature{padding:14px 16px;border:1px solid rgba(255,255,255,.05);border-radius:12px;font:500 11px DM Mono,monospace;color:#8a9086;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:all .3s ease;background:rgba(255,255,255,.02)}
-.feature:hover{border-color:rgba(217,255,58,.15);color:var(--acid);background:rgba(217,255,255,.03)}
-.feature strong{font-family:Manrope,sans-serif;font-size:11px;color:#d0d4cc;font-weight:600}
-.product-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 20px;border-radius:100px;font-size:12px;font-weight:700;transition:all .4s cubic-bezier(.23,1,.32,1);letter-spacing:.02em}
-.btn.primary{background:var(--acid);color:#0a0b0a;border:1px solid var(--acid)}
-.btn.primary:hover{background:#c8e632;transform:translateY(-2px);box-shadow:0 8px 24px rgba(217,255,58,.25)}
-.btn{background:rgba(255,255,255,.06);color:#c8ccc4;border:1px solid rgba(255,255,255,.1)}
-.btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);transform:translateY(-1px)}
+/* Stats trio */
+.product-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:96px}
+.stat-card{border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);border-radius:24px;padding:56px 32px;text-align:center;transition:all .5s cubic-bezier(.23,1,.32,1)}
+.stat-card:hover{border-color:rgba(217,255,58,.18);transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.35)}
+.stat-card.invert{background:var(--acid);border-color:var(--acid)}
+.stat-card.invert .stat-num{color:#0a0b0a}
+.stat-card.invert .stat-label{color:rgba(10,11,10,.6)}
+.stat-card.invert:hover{box-shadow:0 20px 48px rgba(217,255,58,.22)}
+.stat-num{display:block;font-family:Space Grotesk,sans-serif;font-size:clamp(48px,5.5vw,68px);font-weight:700;letter-spacing:-.05em;color:#fff;line-height:1}
+.stat-label{display:block;margin-top:16px;font:500 10px DM Mono,monospace;text-transform:uppercase;letter-spacing:.18em;color:#8a9086}
+
+/* Showcase cards */
+.showcase-list{display:flex;flex-direction:column;gap:48px}
+.showcase-card{display:grid;grid-template-columns:minmax(0,44%) minmax(0,1fr);gap:28px;background:#0f100f;border:1px solid rgba(255,255,255,.08);border-radius:36px;padding:28px;min-height:660px;box-shadow:5px 5px 10px rgba(0,0,0,.35);transition:border-color .5s ease,box-shadow .6s ease,transform .5s cubic-bezier(.23,1,.32,1)}
+.showcase-card:hover{border-color:rgba(217,255,58,.14);box-shadow:0 32px 70px rgba(0,0,0,.5);transform:translateY(-4px)}
+.showcase-card.flip{grid-template-columns:minmax(0,1fr) minmax(0,44%)}
+.showcase-card.flip .showcase-body{order:2;padding:56px 56px 56px 40px}
+.showcase-card.flip .product-visual{order:1}
+.showcase-body{padding:56px 40px 56px 56px;display:flex;flex-direction:column;justify-content:center}
+.showcase-eyebrow{display:flex;align-items:center;gap:14px;font:600 10px DM Mono,monospace;letter-spacing:.2em;text-transform:uppercase;color:#8a9086}
+.showcase-eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px rgba(217,255,58,.5);flex:0 0 8px}
+.showcase-card.coming .showcase-eyebrow::before{background:#71766e;box-shadow:none}
+.showcase-title{font-family:Space Grotesk,sans-serif;font-size:clamp(46px,5.2vw,80px);font-weight:700;letter-spacing:-.06em;line-height:.94;margin-top:24px;color:#fff}
+.showcase-desc{margin-top:24px;color:#9aa096;line-height:1.8;font-size:16px;max-width:480px}
+.showcase-features{list-style:none;margin:36px 0 0;padding:0;display:flex;flex-direction:column;gap:16px}
+.showcase-features li{display:flex;align-items:center;gap:12px;font:500 15px Manrope,sans-serif;color:#c8cdc3}
+.showcase-features li::before{content:"";width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:rgba(217,255,58,.1);border:1.5px solid rgba(217,255,58,.5);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d9ff3a' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");background-size:10px;background-repeat:no-repeat;background-position:center}
+.showcase-card.coming .showcase-features li::before{border-color:rgba(255,255,255,.2);background-color:rgba(255,255,255,.04);background-image:none}
+
+/* Product visual panel */
+.product-visual{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.06);border-radius:26px;background:linear-gradient(160deg,rgba(22,24,22,.9),rgba(9,10,9,.95));min-height:560px;transition:border-color .5s ease,box-shadow .6s ease}
+.product-visual:hover{border-color:rgba(217,255,58,.12);box-shadow:0 24px 64px rgba(0,0,0,.45),0 0 44px rgba(217,255,58,.03)}
+.product-visual .grain{position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 72% 20%,rgba(217,255,58,.1),transparent 30%),radial-gradient(circle at 20% 85%,rgba(255,255,255,.04),transparent 30%);pointer-events:none}
+.product-visual .label{position:absolute;left:28px;top:24px;font:600 9px DM Mono,monospace;letter-spacing:.2em;color:rgba(255,255,255,.3);text-transform:uppercase;z-index:6;pointer-events:none}
+.product-visual .ambient{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.product-visual .ambient.green{background:rgba(217,255,58,.07);right:-100px;top:-100px}
+.product-visual .ambient.blue{background:rgba(56,120,255,.05);left:-80px;bottom:-80px}
+
+/* Browser mockup */
+.mockup{position:absolute;inset:56px 36px 40px;z-index:4;border-radius:16px;background:#0a0b0a;border:1px solid rgba(255,255,255,.1);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 32px 80px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.4);transition:transform .6s cubic-bezier(.23,1,.32,1),box-shadow .6s ease}
+.product-visual:hover .mockup{transform:translateY(-4px);box-shadow:0 40px 90px rgba(0,0,0,.6)}
+.mockup-bar{display:flex;align-items:center;gap:7px;padding:13px 16px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07);flex:0 0 auto}
+.mockup-bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.14)}
+.mockup-bar i:nth-child(1){background:#ff5f57}
+.mockup-bar i:nth-child(2){background:#febc2e}
+.mockup-bar i:nth-child(3){background:#28c840}
+.mockup-bar span{margin-left:10px;font:500 10px DM Mono,monospace;color:rgba(255,255,255,.35);background:rgba(255,255,255,.05);padding:5px 14px;border-radius:7px;letter-spacing:.04em}
+.mockup-body{display:flex;flex:1;min-height:0}
+.mockup-side{width:132px;flex:0 0 132px;border-right:1px solid rgba(255,255,255,.06);padding:18px 12px;display:flex;flex-direction:column;gap:6px;background:rgba(255,255,255,.015)}
+.m-item{height:30px;border-radius:8px;display:flex;align-items:center;gap:9px;padding:0 10px;font:500 9px DM Mono,monospace;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.34);transition:all .3s ease}
+.m-item::before{content:"";width:6px;height:6px;border-radius:2px;background:currentColor;opacity:.6;flex:0 0 6px}
+.m-item.active{background:rgba(217,255,58,.1);color:var(--acid);border:1px solid rgba(217,255,58,.2)}
+.mockup-main{flex:1;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0;overflow:hidden}
+.m-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.m-title{font:600 13px Space Grotesk,sans-serif;color:rgba(255,255,255,.75);letter-spacing:-.02em}
+.m-pill{font:700 8px DM Mono,monospace;color:#0a0b0a;background:var(--acid);padding:5px 11px;border-radius:99px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.m-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.m-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px 11px}
+.m-stat.hl{background:rgba(217,255,58,.07);border-color:rgba(217,255,58,.22)}
+.m-stat b{display:block;font:700 17px Space Grotesk,sans-serif;color:#fff;letter-spacing:-.03em}
+.m-stat.hl b{color:var(--acid)}
+.m-stat s{display:block;text-decoration:none;font:500 7px DM Mono,monospace;color:rgba(255,255,255,.35);margin-top:4px;text-transform:uppercase;letter-spacing:.12em}
+.m-rows{display:flex;flex-direction:column;gap:7px}
+.m-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:9px;padding:9px 11px}
+.m-avatar{width:20px;height:20px;border-radius:50%;flex:0 0 20px;background:linear-gradient(135deg,rgba(217,255,58,.45),rgba(217,255,58,.08));border:1px solid rgba(217,255,58,.25)}
+.m-avatar.b{background:linear-gradient(135deg,rgba(56,120,255,.45),rgba(56,120,255,.08));border-color:rgba(56,120,255,.3)}
+.m-avatar.c{background:linear-gradient(135deg,rgba(255,255,255,.25),rgba(255,255,255,.05));border-color:rgba(255,255,255,.15)}
+.m-lines{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.m-line{height:5px;border-radius:3px;background:rgba(255,255,255,.13)}
+.m-line.w70{width:70%}.m-line.w50{width:50%}.m-line.w90{width:90%}.m-line.w40{width:40%}
+.m-tag{font:700 7px DM Mono,monospace;padding:3px 7px;border-radius:5px;background:rgba(217,255,58,.12);color:var(--acid);border:1px solid rgba(217,255,58,.28);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;flex:0 0 auto}
+.m-tag.blue{background:rgba(56,120,255,.12);color:#7aa2ff;border-color:rgba(56,120,255,.32)}
+.m-tag.dim{background:rgba(255,255,255,.05);color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.1)}
+.m-chart{display:flex;align-items:flex-end;gap:7px;height:88px;padding:14px 14px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:12px;flex:1;min-height:70px}
+.m-bar{flex:1;border-radius:4px 4px 0 0;background:rgba(255,255,255,.1);min-height:8px}
+.m-bar.acid{background:linear-gradient(180deg,var(--acid),rgba(217,255,58,.25))}
+/* Coming soon wireframe */
+.mockup-main.centered{align-items:center;justify-content:center;gap:16px;text-align:center}
+.m-wire{height:12px;border-radius:6px;border:1.5px dashed rgba(255,255,255,.14);background:rgba(255,255,255,.02);width:100%}
+.m-wire.w80{width:80%}.m-wire.w55{width:55%}.m-wire.w35{width:35%}
+.m-soon{font:700 10px DM Mono,monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--acid);padding:11px 22px;border:1.5px solid rgba(217,255,58,.35);border-radius:99px;background:rgba(217,255,58,.06);box-shadow:0 0 24px rgba(217,255,58,.08)}
+
+.product-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 36px;border:2px solid transparent;border-radius:999px;font-size:14px;font-weight:700;transition:all .35s cubic-bezier(.23,1,.32,1);letter-spacing:.02em;cursor:pointer;background:transparent;color:#e8eae4;border-color:rgba(255,255,255,.28)}
+.btn:hover{background:#fff;border-color:#fff;color:#0a0b0a;transform:translateY(-3px)}
+.btn.primary{background:var(--acid);color:#0a0b0a;border-color:var(--acid)}
+.btn.primary:hover{background:#fff;border-color:#fff;color:#0a0b0a;box-shadow:0 14px 32px rgba(217,255,58,.25)}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
 
 /* Studio DNA */
 .dna{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -225,14 +268,25 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
   .nav-links.is-open{display:flex}
   .menu-toggle{display:grid;place-items:center}.nav-cta{margin-left:auto;margin-right:8px}
   .intro,.founder{grid-template-columns:1fr;gap:40px}
-  .product-stage{grid-template-columns:1fr}
-  .product-visual{min-height:490px}
+  .showcase-card,.showcase-card.flip{grid-template-columns:1fr;min-height:0;gap:20px}
+  .showcase-card.flip .showcase-body,.showcase-card.flip .product-visual{order:unset}
+  .showcase-body,.showcase-card.flip .showcase-body{padding:44px 36px}
+  .product-visual{min-height:520px}
+  .mockup{inset:52px 32px 36px}
+  .product-stats{margin-bottom:72px}
+  .showcase-list{gap:36px}
   .future-content{flex-direction:column;align-items:flex-start}
   .modal-hero{grid-template-columns:1fr;gap:30px}
 }
 @media (max-width:900px){
-  .product-row{grid-template-columns:60px 1fr 120px 25px;gap:16px;padding:20px 18px}
-  .product-name{font-size:clamp(22px,4vw,36px)}
+  .product-stats{gap:14px;margin-bottom:64px}
+  .stat-card{padding:40px 16px;border-radius:20px}
+  .stat-num{font-size:clamp(36px,5vw,52px)}
+  .showcase-card{padding:18px;border-radius:28px}
+  .showcase-body,.showcase-card.flip .showcase-body{padding:40px 28px}
+  .showcase-title{font-size:clamp(38px,5.5vw,60px)}
+  .product-visual{min-height:460px}
+  .mockup{inset:48px 24px 32px}
   .products-head{flex-direction:column;align-items:flex-start;gap:16px}
   .products-head h2{font-size:clamp(42px,10vw,80px)}
   .hero h1{font-size:clamp(56px,10vw,110px)}
@@ -254,26 +308,27 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
   .hero-sub{font-size:15px;margin-top:24px}
   .hero-note{font-size:11px;max-width:280px}
   .marquee-item{font-size:22px;padding:18px 24px}
-  .products-head{margin-bottom:30px}
+  .products-head{margin-bottom:40px}
   .products-head h2{font-size:clamp(38px,12vw,72px)}
-  .product-row{grid-template-columns:36px 1fr 20px;gap:10px;padding:16px 14px}
-  .product-kind,.product-status{display:none}
-  .product-name{font-size:22px}
-  .product-no{font-size:9px}
-  .product-stage{margin-top:60px}
-  .product-visual{min-height:320px;border-radius:18px}
-  .product-visual .ring{width:260px;height:260px;right:-80px;top:-80px}
-  .product-visual .ring.r2{width:170px;height:170px;right:8%;top:15%}
-  .product-visual .massive{left:20px;bottom:20px;font-size:clamp(48px,12vw,68px)}
-  .product-visual .label{left:20px;top:18px;font-size:9px}
-  .product-info{padding-top:16px}
-  .product-info h3{font-size:clamp(34px,8vw,56px);margin-top:14px}
-  .product-info p{font-size:14px;margin-top:18px;line-height:1.7}
-  .feature-list{grid-template-columns:1fr;margin-top:20px;gap:6px}
-  .feature{padding:10px 12px;font-size:10px}
-  .feature strong{font-size:10px}
-  .product-actions{margin-top:24px;gap:8px}
-  .btn{min-height:40px;padding:0 14px;font-size:11px;border-radius:100px}
+  .product-stats{gap:10px;margin-bottom:52px}
+  .stat-card{padding:30px 12px;border-radius:16px}
+  .stat-num{font-size:clamp(30px,6vw,44px)}
+  .stat-label{font-size:9px;letter-spacing:.12em;margin-top:10px}
+  .showcase-list{gap:24px}
+  .showcase-card,.showcase-card.flip{padding:12px;border-radius:22px;gap:14px}
+  .showcase-body,.showcase-card.flip .showcase-body{padding:30px 20px}
+  .showcase-title{font-size:clamp(32px,7vw,50px);margin-top:16px}
+  .showcase-desc{font-size:14px;margin-top:16px}
+  .showcase-features{gap:12px;margin-top:24px}
+  .showcase-features li{font-size:14px;gap:10px}
+  .product-visual{min-height:420px;border-radius:16px}
+  .mockup{inset:44px 18px 28px;border-radius:12px}
+  .mockup-side{display:none}
+  .mockup-main{padding:16px;gap:12px}
+  .m-rows .m-row:nth-child(n+4){display:none}
+  .product-visual .label{left:20px;top:16px;font-size:9px}
+  .product-actions{margin-top:28px;gap:10px}
+  .btn{min-height:46px;padding:0 24px;font-size:12px}
   .dna{grid-template-columns:1fr}
   .dna-card{min-height:220px;padding:22px}
   .dna-card h3{font-size:28px;margin-top:50px}
@@ -325,18 +380,29 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
   .big-copy{font-size:clamp(30px,8vw,48px)}
   .intro-copy{font-size:14px}
   .products-head h2{font-size:clamp(32px,12vw,56px)}
-  .product-row{grid-template-columns:30px 1fr 16px;gap:8px;padding:14px 12px}
-  .product-name{font-size:18px}
-  .product-orb{width:8px;height:8px;flex:0 0 8px}
-  .product-stage{margin-top:48px}
-  .product-visual{min-height:260px;border-radius:16px}
-  .product-visual .massive{font-size:clamp(40px,14vw,56px);left:16px;bottom:16px}
+  .product-stats{gap:8px;margin-bottom:44px}
+  .stat-card{padding:24px 8px;border-radius:14px}
+  .stat-num{font-size:clamp(26px,7vw,38px)}
+  .stat-label{font-size:8px;letter-spacing:.1em}
+  .showcase-list{gap:18px}
+  .showcase-body,.showcase-card.flip .showcase-body{padding:26px 16px}
+  .showcase-title{font-size:clamp(28px,8vw,42px)}
+  .showcase-eyebrow{font-size:8px;gap:8px}
+  .showcase-features li{font-size:13px;gap:9px}
+  .showcase-features li::before{width:16px;height:16px;flex-basis:16px}
+  .product-visual{min-height:340px;border-radius:16px}
+  .mockup{inset:40px 14px 24px;border-radius:10px}
+  .mockup-bar{padding:10px 12px;gap:5px}
+  .mockup-bar i{width:7px;height:7px}
+  .mockup-bar span{font-size:8px;padding:4px 9px}
+  .mockup-main{padding:12px;gap:10px}
+  .m-title{font-size:11px}
+  .m-stat{padding:9px 8px}
+  .m-stat b{font-size:14px}
+  .m-rows .m-row:nth-child(n+3){display:none}
+  .m-chart{height:64px;min-height:56px;padding:10px 10px 8px;gap:5px}
   .product-visual .label{left:16px;top:14px;font-size:8px;letter-spacing:.1em}
-  .product-info h3{font-size:clamp(30px,10vw,48px)}
-  .product-info p{font-size:13px}
-  .feature{padding:8px 10px;font-size:9px;border-radius:8px}
-  .feature strong{font-size:9px}
-  .btn{min-height:36px;padding:0 12px;font-size:10px;border-radius:100px}
+  .btn{min-height:42px;padding:0 20px;font-size:11px}
   .dna-card{min-height:200px;padding:18px;border-radius:14px}
   .dna-card .num{font-size:9px}
   .dna-card h3{font-size:24px;margin-top:44px}
@@ -365,16 +431,14 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
 @media (max-width:360px){
   .hero h1{font-size:clamp(36px,14vw,56px)}
   .products-head h2{font-size:clamp(28px,12vw,44px)}
-  .product-name{font-size:16px}
-  .product-visual .massive{font-size:clamp(34px,14vw,48px)}
-  .product-info h3{font-size:clamp(26px,10vw,40px)}
+  .showcase-title{font-size:clamp(24px,9vw,36px)}
   .dna-card h3{font-size:22px}
   .founder-copy h2{font-size:clamp(30px,12vw,46px)}
   .future h2{font-size:clamp(30px,12vw,48px)}
   .modal-hero h2{font-size:clamp(32px,12vw,52px)}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1!important;transform:none!important}.hero *{transition:none!important}.marquee-track{transform:none!important}.product-row:before{transition:none}.modal-backdrop,.modal-panel{transition:none!important}}
-@media print{.nav-shell,#cursor,#cursor-dot,.scroll-prompt,.marquee,.menu-toggle,.nav-cta{display:none!important}.hero{min-height:auto;padding:40px 0}.hero-content{padding:0}.product-stage{break-inside:avoid}body{background:#fff;color:#000}body:before{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1!important;transform:none!important}.hero *{transition:none!important}.marquee-track{transform:none!important}.modal-backdrop,.modal-panel{transition:none!important}}
+@media print{.nav-shell,#cursor,#cursor-dot,.scroll-prompt,.marquee,.menu-toggle,.nav-cta{display:none!important}.hero{min-height:auto;padding:40px 0}.hero-content{padding:0}.showcase-card{break-inside:avoid}body{background:#fff;color:#000}body:before{display:none}}
 </style>
 </head>
 <body>
@@ -449,69 +513,133 @@ body.cursor-hover #cursor{width:56px;height:56px;background:rgba(217,255,58,.12)
   <section class="section" id="products">
     <div class="wrap">
       <div class="products-head">
-        <div><div class="eyebrow reveal">02 / Product index</div><h2 class="display reveal" style="margin-top:24px">What we build.</h2></div>
+        <div><div class="eyebrow reveal">02 / Product index</div><h2 class="display reveal" style="margin-top:24px">What we <span class="acid">build</span>.</h2></div>
         <p class="muted reveal" style="max-width:330px;font-size:13px;line-height:1.7">Each product starts with a real problem. These are the ones that made it out of the lab.</p>
       </div>
 
-      <div class="product-index reveal" id="productIndex">
-        <button class="product-row" data-product="workroom">
-          <span class="product-no">01</span><span class="product-main"><span class="product-orb"></span><span class="product-name">workroomWR</span></span><span class="product-kind">Workflow OS</span><span class="product-status">Public product</span><span class="product-arrow"></span>
-        </button>
-        <button class="product-row" data-product="clinicflow">
-          <span class="product-no">02</span><span class="product-main"><span class="product-orb"></span><span class="product-name">ClinicFlow Pro</span></span><span class="product-kind">Clinic operating system</span><span class="product-status">Public product</span><span class="product-arrow"></span>
-        </button>
-        <button class="product-row" data-product="future">
-          <span class="product-no">03</span><span class="product-main"><span class="product-orb" style="background:#71766e;box-shadow:none"></span><span class="product-name">Next AI Product</span></span><span class="product-kind">In the lab</span><span class="product-status coming">Coming soon</span><span class="product-arrow"></span>
-        </button>
+      <div class="product-stats reveal">
+        <div class="stat-card"><span class="stat-num" data-count="4">04</span><span class="stat-label">Years building</span></div>
+        <div class="stat-card invert"><span class="stat-num" data-count="2">02</span><span class="stat-label">Products live</span></div>
+        <div class="stat-card"><span class="stat-num" data-count="1">01</span><span class="stat-label">In the lab</span></div>
       </div>
 
-      <article class="product-stage reveal" id="workroom-stage">
-        <div class="product-visual" data-parallax="1">
-          <div class="ambient green"></div><div class="ambient blue"></div>
-          <div class="grain"></div><div class="grid"></div><div class="ring"></div><div class="ring r2"></div>
-          <span class="label">PRODUCT / 001 / WORKROOMWR</span><div class="massive">ONE<br><span>ROOM.</span></div>
-        </div>
-        <div class="product-info">
-          <div class="product-info-top">
-            <div class="tag">Live · Workflow tool for delivery teams</div>
-            <h3 class="display">workroomWR</h3>
-            <p>One room for every client project. Files, milestones, approvals, payments, and conversation, all in the same place, none of it buried in scattered tabs.</p>
-            <div class="feature-list">
-              <div class="feature"><span>Spaces</span><strong>Project rooms</strong></div>
-              <div class="feature"><span>Tracking</span><strong>Milestones</strong></div>
-              <div class="feature"><span>Feedback</span><strong>Approvals</strong></div>
-              <div class="feature"><span>Billing</span><strong>Payments</strong></div>
-              <div class="feature"><span>Files</span><strong>Docs + chat</strong></div>
-              <div class="feature"><span>Team</span><strong>Shared access</strong></div>
-            </div>
+      <div class="showcase-list">
+        <article class="showcase-card reveal" id="workroom-stage">
+          <div class="showcase-body">
+            <div class="showcase-eyebrow">01 / Workflow tool · Live product</div>
+            <h3 class="showcase-title">workroomWR</h3>
+            <p class="showcase-desc">One room for every client project. Files, milestones, approvals, payments, and conversation, all in the same place, none of it buried in scattered tabs.</p>
+            <ul class="showcase-features">
+              <li>Project rooms with shared access</li><li>Milestones and progress tracking</li><li>Approvals without email chains</li><li>Payments collected in one place</li>
+            </ul>
             <div class="product-actions"><a class="btn primary magnetic" href="https://workroom-by-hb.vercel.app/" target="_blank" rel="noopener noreferrer">View product</a><button class="btn" data-product="workroom">Full details</button></div>
           </div>
-        </div>
-      </article>
-
-      <article class="product-stage reveal" id="clinic-stage">
-        <div class="product-info">
-          <div class="product-info-top">
-            <div class="tag">Live · Healthcare operations tool</div>
-            <h3 class="display">ClinicFlow Pro</h3>
-            <p>Appointments, patient records, prescriptions, billing, and analytics, connected into one workflow. Built for the way clinics actually run, not how software thinks they should.</p>
-            <div class="feature-list">
-              <div class="feature"><span>Care</span><strong>Patient records</strong></div>
-              <div class="feature"><span>Scheduling</span><strong>Appointments</strong></div>
-              <div class="feature"><span>Clinical</span><strong>Prescriptions</strong></div>
-              <div class="feature"><span>Business</span><strong>Billing + reports</strong></div>
-              <div class="feature"><span>Comms</span><strong>Patient messaging</strong></div>
-              <div class="feature"><span>Tools</span><strong>Smart workflows</strong></div>
+          <div class="product-visual" data-parallax="1">
+            <div class="ambient green"></div><div class="ambient blue"></div>
+            <div class="grain"></div>
+            <span class="label">PRODUCT / 001 / WORKROOMWR</span>
+            <div class="mockup">
+              <div class="mockup-bar"><i></i><i></i><i></i><span>workroomwr.app/projects</span></div>
+              <div class="mockup-body">
+                <div class="mockup-side">
+                  <div class="m-item active">Projects</div>
+                  <div class="m-item">Milestones</div>
+                  <div class="m-item">Files</div>
+                  <div class="m-item">Billing</div>
+                  <div class="m-item">Team</div>
+                </div>
+                <div class="mockup-main">
+                  <div class="m-head"><span class="m-title">Project overview</span><span class="m-pill">+ New</span></div>
+                  <div class="m-stats">
+                    <div class="m-stat hl"><b>12</b><s>Active</s></div>
+                    <div class="m-stat"><b>48</b><s>Completed</s></div>
+                    <div class="m-stat"><b>6</b><s>Team</s></div>
+                  </div>
+                  <div class="m-rows">
+                    <div class="m-row"><span class="m-avatar"></span><span class="m-lines"><span class="m-line w70"></span><span class="m-line w40"></span></span><span class="m-tag">On track</span></div>
+                    <div class="m-row"><span class="m-avatar b"></span><span class="m-lines"><span class="m-line w90"></span><span class="m-line w50"></span></span><span class="m-tag blue">Review</span></div>
+                    <div class="m-row"><span class="m-avatar c"></span><span class="m-lines"><span class="m-line w50"></span><span class="m-line w70"></span></span><span class="m-tag dim">Paused</span></div>
+                  </div>
+                  <div class="m-chart">
+                    <span class="m-bar" style="height:38%"></span><span class="m-bar acid" style="height:64%"></span><span class="m-bar" style="height:52%"></span><span class="m-bar acid" style="height:88%"></span><span class="m-bar" style="height:58%"></span><span class="m-bar" style="height:74%"></span><span class="m-bar acid" style="height:46%"></span>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+        </article>
+
+        <article class="showcase-card flip reveal" id="clinic-stage">
+          <div class="showcase-body">
+            <div class="showcase-eyebrow">02 / Healthcare tool · Live product</div>
+            <h3 class="showcase-title">ClinicFlow Pro</h3>
+            <p class="showcase-desc">Appointments, patient records, prescriptions, billing, and analytics, connected into one workflow. Built for the way clinics actually run, not how software thinks they should.</p>
+            <ul class="showcase-features">
+              <li>Complete patient records</li><li>Appointments and scheduling</li><li>Prescriptions in a few clicks</li><li>Billing and reports connected</li>
+            </ul>
             <div class="product-actions"><a class="btn primary magnetic" href="https://clinic-flow-landingpage.vercel.app/" target="_blank" rel="noopener noreferrer">View product</a><button class="btn" data-product="clinicflow">Full details</button></div>
           </div>
-        </div>
-        <div class="product-visual" data-parallax="-.7">
-          <div class="ambient green"></div><div class="ambient blue"></div>
-          <div class="grain"></div><div class="grid"></div><div class="ring" style="right:-120px;top:-100px"></div><div class="ring r2" style="right:12%;top:22%"></div>
-          <span class="label">PRODUCT / 002 / CLINICFLOW PRO</span><div class="massive">FLOW<br><span>STATE.</span></div>
-        </div>
-      </article>
+          <div class="product-visual" data-parallax="-.7">
+            <div class="ambient green"></div><div class="ambient blue"></div>
+            <div class="grain"></div>
+            <span class="label">PRODUCT / 002 / CLINICFLOW PRO</span>
+            <div class="mockup">
+              <div class="mockup-bar"><i></i><i></i><i></i><span>clinicflow.app/today</span></div>
+              <div class="mockup-body">
+                <div class="mockup-side">
+                  <div class="m-item active">Today</div>
+                  <div class="m-item">Patients</div>
+                  <div class="m-item">Schedule</div>
+                  <div class="m-item">Rx</div>
+                  <div class="m-item">Reports</div>
+                </div>
+                <div class="mockup-main">
+                  <div class="m-head"><span class="m-title">Today at the clinic</span><span class="m-pill">Live</span></div>
+                  <div class="m-stats">
+                    <div class="m-stat hl"><b>18</b><s>Appointments</s></div>
+                    <div class="m-stat"><b>240</b><s>Patients</s></div>
+                    <div class="m-stat"><b>8</b><s>Rooms</s></div>
+                  </div>
+                  <div class="m-rows">
+                    <div class="m-row"><span class="m-avatar"></span><span class="m-lines"><span class="m-line w70"></span><span class="m-line w40"></span></span><span class="m-tag">09:30</span></div>
+                    <div class="m-row"><span class="m-avatar b"></span><span class="m-lines"><span class="m-line w50"></span><span class="m-line w90"></span></span><span class="m-tag blue">10:15</span></div>
+                    <div class="m-row"><span class="m-avatar c"></span><span class="m-lines"><span class="m-line w90"></span><span class="m-line w50"></span></span><span class="m-tag dim">11:00</span></div>
+                    <div class="m-row"><span class="m-avatar"></span><span class="m-lines"><span class="m-line w40"></span><span class="m-line w70"></span></span><span class="m-tag">11:45</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="showcase-card coming reveal" id="future-stage">
+          <div class="showcase-body">
+            <div class="showcase-eyebrow">03 / In development · Coming soon</div>
+            <h3 class="showcase-title">Next AI Product</h3>
+            <p class="showcase-desc">A new product is in the lab right now. Nothing to show yet, but when it ships, it will live here alongside the others.</p>
+            <ul class="showcase-features">
+              <li>Currently in the lab</li><li>Building in public</li><li>Launching soon</li><li>Early access on request</li>
+            </ul>
+            <div class="product-actions"><span class="btn" aria-disabled="true">Coming soon</span><button class="btn" data-product="future">Full details</button></div>
+          </div>
+          <div class="product-visual" data-parallax=".5">
+            <div class="ambient green"></div><div class="ambient blue"></div>
+            <div class="grain"></div>
+            <span class="label">PRODUCT / 003 / IN THE LAB</span>
+            <div class="mockup">
+              <div class="mockup-bar"><i></i><i></i><i></i><span>next-product.app</span></div>
+              <div class="mockup-body">
+                <div class="mockup-main centered">
+                  <div class="m-wire w80"></div>
+                  <div class="m-wire w55"></div>
+                  <div class="m-soon">Coming soon</div>
+                  <div class="m-wire w35"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -814,6 +942,21 @@ if (hasGSAP) {
       });
     });
   }
+
+  if (!reduced && hasScrollTrigger) {
+    qsa('[data-count]').forEach((element) => {
+      const target = Number(element.dataset.count) || 0;
+      const counter = { v: 0 };
+      element.textContent = '00';
+      gsap.to(counter, {
+        v: target,
+        duration: 1.6,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: element, start: 'top 92%', once: true },
+        onUpdate: () => { element.textContent = String(Math.round(counter.v)).padStart(2, '0'); }
+      });
+    });
+  }
 } else {
   console.warn('[HannanLabs] GSAP unavailable. Core interactions remain usable without enhanced scroll motion.');
 }
@@ -867,7 +1010,7 @@ if (!coarsePointer && hasGSAP) {
     gsap.set(dot, { x: dx, y: dy });
   });
 
-  qsa('a,button,.product-row').forEach((element) => {
+  qsa('a,button,.showcase-card').forEach((element) => {
     element.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     element.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
